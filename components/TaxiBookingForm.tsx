@@ -13,7 +13,7 @@ export default function TaxiBookingForm() {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="glass sticky top-28 rounded-4xl bg-white/90 p-6 shadow-premium md:p-8"
+      className="sticky top-28 rounded-4xl border border-white/60 bg-white/95 p-6 shadow-premium backdrop-blur-xl md:p-8"
     >
       <div className="mb-5 flex gap-2 rounded-full bg-sand-200 p-1">
         {[

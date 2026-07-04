@@ -53,7 +53,7 @@ export default function EnquiryFormProvider({ children }: { children: React.Reac
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.97 }}
               transition={{ type: "spring", damping: 24, stiffness: 260 }}
-              className="glass relative w-full max-w-lg rounded-4xl bg-sand-100/95 p-8 shadow-premium md:p-10"
+              className="relative w-full max-w-lg rounded-4xl border border-white/60 bg-sand-100 p-8 shadow-premium backdrop-blur-xl md:p-10"
             >
               <button
                 aria-label="Close enquiry form"
