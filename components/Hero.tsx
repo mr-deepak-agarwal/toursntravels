@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { FiMapPin, FiCalendar, FiUsers, FiSearch } from "react-icons/fi";
 
@@ -57,23 +56,6 @@ export default function Hero() {
           Premium taxi services, self drive cars, hand-picked hotels and holiday
           packages, built for travellers who want the coast on their own terms.
         </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.7 }}
-          className="mt-8 flex flex-wrap gap-4"
-        >
-          <Link href="/taxi" className="rounded-full bg-sunset-500 px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-sunset-600">
-            Book Taxi
-          </Link>
-          <Link href="/holiday-packages" className="rounded-full border border-sand-100/30 px-7 py-3.5 text-sm font-semibold text-sand-100 backdrop-blur transition hover:bg-sand-100/10">
-            Plan Holiday
-          </Link>
-          <Link href="/hotels" className="rounded-full border border-sand-100/30 px-7 py-3.5 text-sm font-semibold text-sand-100 backdrop-blur transition hover:bg-sand-100/10">
-            Book Hotel
-          </Link>
-        </motion.div>
       </motion.div>
 
       {/* Floating glass booking widget */}
