@@ -1,16 +1,7 @@
-# Konkan Trails — Taxi, Tours & Hotels Website (Next.js)
+# Goa Travel — Taxi, Tours & Hotels Website
 
-Placeholder brand name used throughout — see "Rebranding" below to swap in the real name/logo in minutes.
-
-## What's inside
-
-- **Next.js (App Router) + TypeScript + Tailwind v4**
-- **Framer Motion** for scroll reveals, hero animation, hover/tap micro-interactions
-- Three core sections: **Taxi** (`/taxi`), **Tour Packages** (`/tours`, `/tours/[slug]`), **Hotels** (`/hotels`)
-- Shared **inquiry form** (`components/InquiryForm.tsx`) used on the home, taxi, hotels, tour-detail and contact pages, posting to `/api/contact`
-- **WhatsApp floating button** + WhatsApp links throughout (`lib/config.ts` → `whatsappLink()`)
-- Self-hosted fonts via `@fontsource` (Fraunces for headings, Inter for body) — no runtime call to Google Fonts, so it won't break behind restrictive networks/firewalls
-- Placeholder photography (`components/PlaceholderPhoto.tsx`) — styled gradient blocks that are easy to swap for real photos, so nothing looks "broken" before real images arrive
+A Next.js 16 (App Router, TypeScript, Tailwind v4) starter for a multi-service
+Goa tours & travel business: taxi/self-drive, tour packages, and hotel booking.
 
 ## Getting started
 
@@ -19,57 +10,60 @@ npm install
 npm run dev
 ```
 
-Visit `http://localhost:3000`.
+Open http://localhost:3000. The first `npm run build` needs internet access to
+fetch Fraunces, Inter and Space Mono from Google Fonts (blocked in the sandbox
+this was built in, but fine on your machine / Vercel).
 
-## Rebranding (once you have the real name/logo)
+## What's built
 
-Everything brand-related lives in **one file**: `lib/config.ts`
+- `/` — Home: hero, three-engine cards (taxi/tours/hotels), trust stamps,
+  featured tours, featured hotels, testimonials, contact CTA
+- `/taxi` — fleet, services, quote form
+- `/tours`, `/tours/[slug]` — package listing + detail with itinerary,
+  inclusions/exclusions, enquiry form
+- `/hotels`, `/hotels/[slug]` — listing + detail with amenities, booking form
+- `/about`, `/contact`
 
-```ts
-export const brand = {
-  name: "Konkan Trails",       // ← replace
-  tagline: "...",
-  phone: "+91 98765 43210",    // ← replace
-  whatsappRaw: "919876543210", // ← replace (country code + number, no +/spaces)
-  email: "hello@...",          // ← replace
-  address: "...",
-};
-```
+## Design system — "Azulejo & Laterite"
 
-**Colors** live in `app/globals.css` under `:root` (near the top) — each has a comment explaining its role (`--azulejo` = primary accent, `--laterite` = CTA/accent, etc.). Change the hex values there and the whole site updates.
+Grounded in Goa's own visual vocabulary rather than a generic travel palette:
+- **Indigo** `#16324f` — Portuguese azulejo tile blue (primary)
+- **Laterite** `#b8452e` — the red laterite stone Goan churches are built from (accent/CTA)
+- **Gold** `#d3a34c` — feni & spice gold (highlights)
+- **Ivory** `#f6f1e6` — limewashed facade white (base)
+- Type: **Fraunces** (display, editorial personality) + **Inter** (body) + **Space Mono** (the "stamp" accent font)
+- Signature element: the passport-stamp badge (`Stamp.tsx`) used for trust
+  markers — ties back to the idea of travel documents/journeys
 
-**Logo**: drop the file into `/public` and swap the text logo in `components/Navbar.tsx` (`{brand.shortName}`) for an `<Image>` tag.
+## Content still needed from the client
 
-## Adding real content
+1. **Brand name** — currently "Placeholder Goa Travels" everywhere (search
+   for "Placeholder" to find every spot)
+2. **Real photography** — every image is a styled gradient placeholder
+   (`PhotoPlaceholder.tsx`) labeled with what should go there. Swap with
+   `next/image` once you have real photos.
+3. **Real fleet, tour, and hotel data** — sample content lives in
+   `src/lib/data.ts`
+4. **Phone/WhatsApp number, email, address** — currently using the number
+   from your outreach materials; confirm before launch
+5. **Logo** — currently a text wordmark in Fraunces italic
 
-- **Tour packages**: `lib/data/tours.ts` — add/edit objects in the array. Each gets its own detail page automatically at `/tours/[slug]`.
-- **Taxi services**: `lib/data/taxi.ts`
-- **Hotels**: `lib/data/hotels.ts`
-- **Photos**: once you have real images, put them in `/public/images/...` and replace `<PlaceholderPhoto gradient="..." />` with Next's `<Image src="..." fill alt="..." />` in the relevant component/page.
+## Wiring the forms
 
-## Contact form → email setup
+`EnquiryForm.tsx` posts to `/api/enquiry` (`src/app/api/enquiry/route.ts`),
+which currently just logs to console. Before launch, wire it to one of:
+- Resend/SMTP email
+- WhatsApp Business API / Twilio
+- Google Sheets as a lightweight CRM
+- Formspree (same pattern as codeq.tech)
 
-The form currently logs submissions to the server console (so nothing is lost) until you add SMTP credentials.
+## SEO groundwork already in place
 
-1. Copy `.env.example` to `.env.local`
-2. Fill in SMTP credentials (Gmail App Password, or a transactional provider like Resend/Brevo/SendGrid SMTP)
-3. Restart the dev server
+- Per-page `metadata` (title/description) on every route
+- Semantic heading structure (single H1 per page)
+- `generateStaticParams` on tour/hotel detail pages for static generation
+- Clean, crawlable URLs (`/tours/[slug]`, `/hotels/[slug]`)
 
-The route is `app/api/contact/route.ts` if you want to change the email format or add a database save instead.
-
-## Deploying
-
-Any Next.js host works (Vercel is the simplest — connect the repo, it just works). Make sure to set the same environment variables from `.env.example` in your host's dashboard.
-
-## SEO (for later)
-
-The structure is already SEO-friendly: semantic headings, per-page `metadata` exports (see any `page.tsx`), fast static generation for tour package pages. When you're ready:
-- Fill in real `metadata` (title/description) per page
-- Add `sitemap.ts` and `robots.ts` in `app/`
-- Add JSON-LD structured data (LocalBusiness / TouristTrip schema) once real content is in
-- Replace placeholder photos with optimized, real images with descriptive `alt` text
-
-## Notes on this build
-
-- Fonts are self-hosted (`@fontsource/fraunces`, `@fontsource/inter`) rather than fetched from Google Fonts at build time — more reliable, one less external dependency.
-- All copy, prices, and package details are placeholders reflecting realistic Goa taxi/tour/hotel offerings — replace with the client's actual services and pricing before launch.
+Still to do when you're ready: JSON-LD schema (LocalBusiness + Product/Offer
+for packages), sitemap.xml, robots.txt, GA4, and real alt text once photos
+are in.

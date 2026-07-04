@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+:root {
+  /* Azulejo & Laterite — grounded in Goa's Portuguese tilework, laterite stone churches, and limewashed facades */
+  --color-indigo: #16324f;      /* azulejo tile blue — primary */
+  --color-indigo-deep: #0d1f33; /* nightfall indigo for dark sections */
+  --color-laterite: #b8452e;    /* sun-baked laterite stone — accent */
+  --color-laterite-deep: #8f3220;
+  --color-gold: #d3a34c;        /* feni & spice gold — CTA highlight */
+  --color-ivory: #f6f1e6;       /* limewash facade — base surface */
+  --color-sand: #eadfc7;        /* muted sand — card surfaces */
+  --color-ink: #201c17;         /* warm near-black — text */
+  --color-ink-soft: #5c564c;    /* secondary text */
+  --color-line: #ddd2b8;        /* hairline borders on ivory */
+
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-inter);
+  --font-stamp: var(--font-mono-stamp);
+}
+
+@theme inline {
+  --color-indigo: var(--color-indigo);
+  --color-indigo-deep: var(--color-indigo-deep);
+  --color-laterite: var(--color-laterite);
+  --color-laterite-deep: var(--color-laterite-deep);
+  --color-gold: var(--color-gold);
+  --color-ivory: var(--color-ivory);
+  --color-sand: var(--color-sand);
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-line: var(--color-line);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-stamp: var(--font-stamp);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+::selection {
+  background: var(--color-laterite);
+  color: var(--color-ivory);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-laterite);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-stamp {
+  font-family: var(--font-stamp);
+  letter-spacing: 0.08em;
+}
+
+.container-page {
+  max-width: 1240px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container-page {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+.tile-texture {
+  background-image: radial-gradient(circle at 1px 1px, rgba(22, 50, 79, 0.14) 1px, transparent 0);
+  background-size: 22px 22px;
+}
+
+.tile-texture-light {
+  background-image: radial-gradient(circle at 1px 1px, rgba(246, 241, 230, 0.25) 1px, transparent 0);
+  background-size: 22px 22px;
+}
+
+.grain {
+  position: relative;
+}
+
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
