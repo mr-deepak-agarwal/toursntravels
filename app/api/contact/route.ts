@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { brand } from "@/lib/config";
 
+
+
 export async function POST(req: NextRequest) {
   try {
     const data = await req.json();
@@ -11,9 +13,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Name and phone are required." }, { status: 400 });
     }
 
-    // ── SMTP is configured via environment variables (see .env.example). ──
-    // Until these are set, we log the enquiry so nothing is lost, and
-    // return success so the UI doesn't break during development.
     const hasSmtpConfig =
       process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS;
 
