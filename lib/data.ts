@@ -333,7 +333,7 @@ export const blogPosts = [
     slug: "goa-taxi-guide",
     title: "The Real Goa Taxi Guide: Fares, Zones & What Locals Actually Pay",
     excerpt: "Airport counters, prepaid stands, app-based cabs — here's how the pricing actually works in 2026.",
-    image: "https://images.unsplash.com/photo-1580654712603-eb43273aff33?q=80&w=1400&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1754229291743-86880815413e?q=80&w=1400&auto=format&fit=crop",
     date: "2026-04-28",
     readTime: "6 min read",
   },

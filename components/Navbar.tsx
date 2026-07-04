@@ -25,9 +25,7 @@ export default function Navbar() {
       }`}
     >
       <div
-        className={`container-lux flex items-center justify-between rounded-full px-5 py-2.5 transition-all duration-500 ${
-          scrolled ? "glass-dark shadow-premium" : "bg-transparent"
-        }`}
+        className="container-lux glass-dark flex items-center justify-between rounded-full px-5 py-2.5 shadow-premium transition-all duration-500"
       >
         <Link href="/" className="flex items-center gap-2">
           <span className="font-display text-xl font-medium text-sand-100 md:text-2xl">

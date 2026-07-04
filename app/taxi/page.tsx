@@ -34,7 +34,7 @@ export default function TaxiPage() {
 
             <div className="mt-8 relative h-64 overflow-hidden rounded-4xl md:h-80">
               <Image
-                src="https://images.unsplash.com/photo-1580654712603-eb43273aff33?q=80&w=1600&auto=format&fit=crop"
+                src="https://images.unsplash.com/photo-1754229291743-86880815413e?q=80&w=1600&auto=format&fit=crop"
                 alt="Taxi ready for pickup on a Goa road"
                 fill
                 className="object-cover"
