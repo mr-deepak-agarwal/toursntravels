@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  background-color: #FBF4EA;
+  background-color: #FBF3E6;
   color: #0B1F3A;
 }
 
@@ -43,10 +43,10 @@ body {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #FBF4EA;
+  background: #FBF3E6;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1FC2B0;
+  background: #2F9C89;
   border-radius: 10px;
 }
 
@@ -62,6 +62,6 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid #1FC2B0;
+  outline: 2px solid #2F9C89;
   outline-offset: 3px;
 }

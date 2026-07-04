@@ -16,28 +16,28 @@ const config: Config = {
           700: "#1B3A5F",
         },
         ocean: {
-          500: "#0E88B5",
-          600: "#0C6E93",
-          700: "#0A5876",
+          500: "#12729A",
+          600: "#0F5C7D",
+          700: "#0C4A66",
         },
         turquoise: {
-          400: "#3FD8C7",
-          500: "#1FC2B0",
-          600: "#17A395",
+          400: "#5FBFAC",
+          500: "#2F9C89",
+          600: "#227A6B",
         },
         sand: {
-          100: "#FBF4EA",
-          200: "#F5E6D3",
-          300: "#EAD5B6",
+          100: "#FBF3E6",
+          200: "#F2E1C4",
+          300: "#E6C795",
         },
         sunset: {
-          400: "#F5A65B",
-          500: "#EE8A3C",
-          600: "#E1712A",
+          400: "#E2984F",
+          500: "#C97A32",
+          600: "#A65F23",
         },
         emerald: {
-          500: "#0F9D6E",
-          600: "#0C7F59",
+          500: "#1C7A52",
+          600: "#155E40",
         },
       },
       fontFamily: {
@@ -45,8 +45,8 @@ const config: Config = {
         body: ["var(--font-inter)", "sans-serif"],
       },
       backgroundImage: {
-        "sunset-gradient": "linear-gradient(120deg, #EE8A3C 0%, #F5A65B 35%, #1FC2B0 100%)",
-        "ocean-gradient": "linear-gradient(160deg, #0B1F3A 0%, #0A5876 55%, #17A395 100%)",
+        "sunset-gradient": "linear-gradient(120deg, #C97A32 0%, #E2984F 35%, #2F9C89 100%)",
+        "ocean-gradient": "linear-gradient(160deg, #0B1F3A 0%, #0C4A66 55%, #227A6B 100%)",
         "glass-sheen": "linear-gradient(135deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.05) 100%)",
       },
       boxShadow: {

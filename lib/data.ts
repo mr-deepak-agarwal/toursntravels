@@ -17,7 +17,7 @@ export const services = [
     desc: "Airport transfers, railway pickups, and hotel-to-hotel rides across North and South Goa with fixed, transparent fares.",
     points: ["Airport & Railway Transfer", "North & South Goa", "Intercity & Outstation"],
     href: "/taxi",
-    image: "https://images.unsplash.com/photo-1580654712603-eb43273aff33?q=80&w=1600&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1754229291743-86880815413e?q=80&w=1600&auto=format&fit=crop",
   },
   {
     id: "self-drive",
@@ -116,7 +116,7 @@ export const fleet = [
     luggage: 2,
     ac: true,
     price: "₹9/km",
-    image: "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1754229291743-86880815413e?q=80&w=1200&auto=format&fit=crop",
   },
   {
     name: "SUV",
