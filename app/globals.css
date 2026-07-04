@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+:root {
+  /* ---- Brand tokens (swap these when real logo/brand colors arrive) ---- */
+  --sand:        #F2E9D8; /* sun-bleached whitewash wall */
+  --sand-dim:    #E8DCC4;
+  --ink:         #16302E; /* deep monsoon-green black */
+  --ink-soft:    #24413D;
+  --azulejo:     #1F5C6B; /* Portuguese tile blue — primary accent */
+  --azulejo-dim: #164650;
+  --laterite:    #C1502E; /* laterite roof-tile red — CTA accent */
+  --laterite-dim:#A5411F;
+  --palm:        #4C6B4F; /* palm green — success/tags */
+  --gold:        #D9A441; /* sunset gold — sparingly, highlights only */
+  --paper:       #FBF8F2; /* near-white card surface */
+
+  --background: var(--sand);
+  --foreground: var(--ink);
+}
+
+@theme inline {
+  --color-sand: var(--sand);
+  --color-sand-dim: var(--sand-dim);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-azulejo: var(--azulejo);
+  --color-azulejo-dim: var(--azulejo-dim);
+  --color-laterite: var(--laterite);
+  --color-laterite-dim: var(--laterite-dim);
+  --color-palm: var(--palm);
+  --color-gold: var(--gold);
+  --color-paper: var(--paper);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Azulejo tile divider — signature motif, used sparingly between sections */
+.tile-divider {
+  height: 14px;
+  width: 100%;
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--azulejo) 0px,
+    var(--azulejo) 2px,
+    transparent 2px,
+    transparent 8px
+  );
+  opacity: 0.25;
+}
+
+/* Dashed route line signature — used in hero / itinerary / cards */
+.route-dash {
+  stroke-dasharray: 2 10;
+  stroke-linecap: round;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
