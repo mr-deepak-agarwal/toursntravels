@@ -10,9 +10,9 @@ import FAQAccordion from "@/components/FAQAccordion";
 import FAQSchema from "@/components/FAQSchema";
 
 export const metadata: Metadata = {
-  title: "Premium Goa Taxi, Self Drive, Hotels & Holiday Packages",
+  title: "Premium Goa Taxi, Self Drive, Hotels, Holiday & Pilgrimage Packages",
   description:
-    "Book premium taxi transfers, self drive cars, curated hotels, sightseeing tours and holiday packages across Goa. Transparent pricing, verified drivers, 24x7 support.",
+    "Book premium taxi transfers, self drive cars, curated hotels, sightseeing tours, holiday packages and pilgrimage tours across Goa and beyond. Verified drivers, 24x7 support, best-price quotes on request.",
   alternates: { canonical: "/" },
 };
 

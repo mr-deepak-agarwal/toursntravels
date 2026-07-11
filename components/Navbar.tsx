@@ -28,8 +28,9 @@ export default function Navbar() {
         className="container-lux glass-dark flex items-center justify-between rounded-full px-5 py-2.5 shadow-premium transition-all duration-500"
       >
         <Link href="/" className="flex items-center gap-2">
+          {/* TODO(Balli): swap this wordmark for your logo image once ready, e.g. <Image src="/logo.png" ... /> */}
           <span className="font-display text-xl font-medium text-sand-100 md:text-2xl">
-            Azure<span className="text-turquoise-400">Goa</span>
+            Goa Best<span className="text-turquoise-400">Deals</span>
           </span>
         </Link>
 

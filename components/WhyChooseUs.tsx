@@ -4,7 +4,7 @@ import { FiShield, FiClock, FiMapPin, FiDollarSign } from "react-icons/fi";
 
 const badges = [
   { icon: FiShield, label: "Professional, verified drivers" },
-  { icon: FiDollarSign, label: "Transparent, all-inclusive pricing" },
+  { icon: FiDollarSign, label: "Honest quotes, no hidden costs" },
   { icon: FiMapPin, label: "GPS-enabled vehicles" },
   { icon: FiClock, label: "12 years serving travellers in Goa" },
 ];

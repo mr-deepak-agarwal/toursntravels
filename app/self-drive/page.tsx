@@ -7,12 +7,14 @@ import { FiUsers, FiSettings } from "react-icons/fi";
 import { fleet } from "@/lib/data";
 import { useEnquiry } from "@/components/EnquiryFormContext";
 
-const filters = ["All", "Automatic", "Manual", "SUV", "Hatchback", "Luxury"];
+const filters = ["All", "Hatchback", "Sedan", "MUV", "SUV", "Luxury"];
 
 export default function SelfDrivePage() {
   const [active, setActive] = useState("All");
   const { open } = useEnquiry();
-  const selfDriveFleet = fleet.filter((v) => v.name !== "Tempo Traveller");
+  const selfDriveFleet = fleet
+    .filter((v) => v.name !== "Tempo Traveller")
+    .filter((v) => active === "All" || v.name === active);
 
   return (
     <div className="pt-28">
@@ -55,10 +57,7 @@ export default function SelfDrivePage() {
                 <Image src={v.image} alt={v.name} fill className="object-cover" />
               </div>
               <div className="p-5">
-                <div className="flex items-baseline justify-between">
-                  <h3 className="font-display text-xl text-navy-900">{v.name}</h3>
-                  <span className="text-sm font-semibold text-emerald-600">{v.price}</span>
-                </div>
+                <h3 className="font-display text-xl text-navy-900">{v.name}</h3>
                 <p className="mt-1 text-xs text-navy-900/50">{v.example}</p>
                 <div className="mt-4 flex gap-4 text-xs text-navy-900/60">
                   <span className="flex items-center gap-1"><FiUsers /> {v.passengers} seats</span>

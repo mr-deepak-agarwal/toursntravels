@@ -5,7 +5,7 @@ import { stats } from "@/lib/data";
 export const metadata: Metadata = {
   title: "About Us — Our Goa Story",
   description:
-    "AzureGoa has been arranging taxis, self drive cars, hotels and holidays across Goa since 2014, built on transparent pricing and local knowledge.",
+    "Goa Best Deals Tours & Travels has been arranging taxis, self drive cars, hotels, holidays and pilgrimage tours across Goa since 2014, built on honest quotes and local knowledge.",
   alternates: { canonical: "/about" },
 };
 
@@ -25,10 +25,10 @@ export default function AboutPage() {
             Started with one taxi, one honest fare
           </h1>
           <p className="mt-5 text-navy-900/70">
-            In 2014, AzureGoa began with a single sedan and a simple idea: quote the real fare upfront,
-            show up on time, and treat every guest like a returning one. Over a decade later, that same
-            promise now covers a full fleet, a curated hotel network and holiday packages that stretch
-            from the Himalayas to the Andamans.
+            In 2014, Goa Best Deals Tours &amp; Travels began with a single sedan and a simple idea: give an
+            honest quote, show up on time, and treat every guest like a returning one. Over a decade later,
+            that same promise now covers a full fleet, a curated hotel network, holiday packages that
+            stretch to the Himalayas, and guided pilgrimage tours.
           </p>
           <p className="mt-4 text-navy-900/70">
             We&apos;re still headquartered on Beach Road in Candolim, still run by people who grew up on
@@ -38,7 +38,7 @@ export default function AboutPage() {
         <div className="relative h-80 overflow-hidden rounded-4xl md:h-96">
           <Image
             src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=1600&auto=format&fit=crop"
-            alt="Goa coastline where AzureGoa is based"
+            alt="Goa coastline where Goa Best Deals Tours & Travels is based"
             fill
             className="object-cover"
           />
@@ -50,7 +50,7 @@ export default function AboutPage() {
           <div className="rounded-4xl bg-white p-8 shadow-premium">
             <h2 className="font-display text-xl text-navy-900">Mission</h2>
             <p className="mt-3 text-sm text-navy-900/65">
-              Make travelling through Goa and beyond feel effortless, with transparent pricing,
+              Make travelling through Goa and beyond feel effortless, with honest quotes,
               verified partners and support that actually answers the phone.
             </p>
           </div>

@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="container-lux grid gap-12 py-16 md:grid-cols-4">
         <div className="md:col-span-1">
           <span className="font-display text-2xl">
-            Azure<span className="text-turquoise-400">Goa</span>
+            Goa Best<span className="text-turquoise-400">Deals</span>
           </span>
           <p className="mt-4 max-w-xs text-sm text-sand-100/60">{siteConfig.description}</p>
           <div className="mt-6 flex gap-3">

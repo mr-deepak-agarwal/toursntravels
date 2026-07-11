@@ -4,17 +4,18 @@ import { fleet } from "@/lib/data";
 import TaxiBookingForm from "@/components/TaxiBookingForm";
 
 export const metadata: Metadata = {
-  title: "Goa Taxi Service — Airport Transfers, Outstation & Local Cabs",
+  title: "Goa Taxi Service — Pickup & Drop Anywhere in Goa",
   description:
-    "Book reliable Goa taxis for airport transfers, railway pickups, North & South Goa sightseeing and outstation trips. Fixed fares, verified drivers, 24x7 support.",
+    "Book reliable Goa taxis for pickup and drop anywhere in Goa — airport transfers, railway pickups, North & South Goa sightseeing and outstation trips at the best price. Verified drivers, 24x7 support.",
   alternates: { canonical: "/taxi" },
 };
 
 const routes = [
-  { from: "Goa Airport (Dabolim/Mopa)", to: "Calangute / Baga", price: "₹900 onwards" },
-  { from: "Goa Airport", to: "Palolem, South Goa", price: "₹1,800 onwards" },
-  { from: "Madgaon Railway", to: "Anjuna", price: "₹850 onwards" },
-  { from: "North Goa", to: "South Goa (round trip)", price: "₹2,200 onwards" },
+  { from: "Goa Airport (Dabolim/Mopa)", to: "Calangute / Baga" },
+  { from: "Goa Airport", to: "Palolem, South Goa" },
+  { from: "Madgaon Railway", to: "Anjuna" },
+  { from: "North Goa", to: "South Goa (round trip)" },
+  { from: "Anywhere in Goa", to: "Anywhere in Goa" },
 ];
 
 export default function TaxiPage() {
@@ -25,11 +26,11 @@ export default function TaxiPage() {
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-turquoise-600">Goa taxi</p>
             <h1 className="heading-hero mt-3 text-4xl text-navy-900 md:text-5xl">
-              Airport pickups that are actually waiting for you
+              Pickup and drop, anywhere in Goa
             </h1>
             <p className="mt-4 max-w-md text-navy-900/65">
-              Fixed, transparent fares for airport transfers, railway pickups, hotel transfers
-              and outstation trips across North and South Goa. No haggling, no surge pricing.
+              Airport transfers, railway pickups, hotel transfers and outstation trips across
+              North and South Goa — at the best price. No haggling, no surge pricing. Contact us for a quote.
             </p>
 
             <div className="mt-8 relative h-64 overflow-hidden rounded-4xl md:h-80">
@@ -46,7 +47,7 @@ export default function TaxiPage() {
               {routes.map((r) => (
                 <div key={r.from + r.to} className="flex items-center justify-between rounded-2xl bg-sand-200/60 px-4 py-3 text-sm">
                   <span className="text-navy-900/75">{r.from} → {r.to}</span>
-                  <span className="font-semibold text-emerald-600">{r.price}</span>
+                  <span className="text-xs font-semibold uppercase tracking-wide text-emerald-600">Get Quote</span>
                 </div>
               ))}
             </div>
@@ -68,7 +69,6 @@ export default function TaxiPage() {
                 <div className="p-4">
                   <h3 className="font-display text-lg text-navy-900">{v.name}</h3>
                   <p className="text-sm text-navy-900/60">{v.example} · {v.passengers} seats</p>
-                  <p className="mt-2 font-semibold text-emerald-600">{v.price}</p>
                 </div>
               </div>
             ))}

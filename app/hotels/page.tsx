@@ -7,7 +7,7 @@ import BookButton from "@/components/BookButton";
 export const metadata: Metadata = {
   title: "Goa Hotels — Beach Resorts, Villas & Boutique Stays",
   description:
-    "Browse vetted Goa hotels, from boutique beach villas in Assagao to full-service resorts in Candolim. Transparent pricing, honest ratings, instant enquiry.",
+    "Browse vetted Goa hotels, from boutique beach villas in Assagao to full-service resorts in Candolim. Honest ratings, instant enquiry, best-price quotes on request.",
   alternates: { canonical: "/hotels" },
 };
 
@@ -45,9 +45,8 @@ export default function HotelsPage() {
                   </span>
                 ))}
               </div>
-              <div className="mt-5 flex items-center justify-between">
-                <span className="font-semibold text-emerald-600">{h.price}</span>
-                <BookButton label="Book Hotel" />
+              <div className="mt-5 flex items-center justify-end">
+                <BookButton label="Enquire for Best Price" />
               </div>
             </div>
           </div>

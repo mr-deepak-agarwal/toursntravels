@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-const vehicleTypes = ["Sedan", "SUV", "Innova", "Tempo Traveller", "Luxury"];
+const vehicleTypes = ["Hatchback", "Sedan", "MUV", "SUV", "Tempo Traveller", "Luxury"];
 
 export default function TaxiBookingForm() {
   const [tripType, setTripType] = useState<"oneway" | "round" | "airport">("airport");

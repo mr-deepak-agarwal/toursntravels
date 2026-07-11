@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { siteConfig, packages, blogPosts } from "@/lib/data";
+import { siteConfig, packages, pilgrimages, blogPosts } from "@/lib/data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/sightseeing",
     "/hotels",
     "/holiday-packages",
+    "/pilgrimage-tours",
     "/blog",
     "/about",
     "/contact",
@@ -26,6 +27,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
+  const pilgrimageRoutes = pilgrimages.map((p) => ({
+    url: `${siteConfig.url}/pilgrimage-tours/${p.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
   const blogRoutes = blogPosts.map((p) => ({
     url: `${siteConfig.url}/blog/${p.slug}`,
     lastModified: new Date(p.date),
@@ -33,5 +41,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
-  return [...staticRoutes, ...packageRoutes, ...blogRoutes];
+  return [...staticRoutes, ...packageRoutes, ...pilgrimageRoutes, ...blogRoutes];
 }

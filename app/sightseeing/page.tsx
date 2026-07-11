@@ -12,44 +12,44 @@ export const metadata: Metadata = {
 
 const tours = [
   {
-    name: "North Goa Tour",
+    name: "North Goa Sightseeing",
     duration: "Full day, 8 hrs",
-    price: "₹1,499 / person",
     desc: "Fort Aguada, Calangute, Baga, Anjuna flea market and Vagator's cliffside views.",
     image: "https://images.unsplash.com/photo-1596395463075-9cfa2ffdaf25?q=80&w=1400&auto=format&fit=crop",
   },
   {
-    name: "South Goa Tour",
+    name: "South Goa Sightseeing",
     duration: "Full day, 8 hrs",
-    price: "₹1,699 / person",
     desc: "Colva, Benaulim, Palolem beach and the quieter Cavelossim coastline.",
     image: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?q=80&w=1400&auto=format&fit=crop",
   },
   {
     name: "Old Goa Heritage Tour",
     duration: "Half day, 4 hrs",
-    price: "₹999 / person",
     desc: "Basilica of Bom Jesus, Se Cathedral and the Portuguese-era lanes of Fontainhas.",
     image: "https://images.unsplash.com/photo-1590373572466-1f2e02b8bb99?q=80&w=1400&auto=format&fit=crop",
   },
   {
-    name: "Sunset & Cruise Tour",
-    duration: "Evening, 3 hrs",
-    price: "₹1,199 / person",
-    desc: "Mandovi river cruise with live music, followed by a Miramar beach sunset stop.",
+    name: "Boat Cruise",
+    duration: "Half day, 2-3 hrs",
+    desc: "A relaxed Mandovi river cruise with live music and views of Goa's riverside forts.",
     image: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?q=80&w=1400&auto=format&fit=crop",
   },
   {
-    name: "Adventure Tour",
-    duration: "Full day, 6 hrs",
-    price: "₹2,299 / person",
-    desc: "Parasailing, jet-ski and banana boat rides at Calangute's water sports zone.",
+    name: "Dinner Boat Cruise",
+    duration: "Evening, 2-3 hrs",
+    desc: "Sunset over the Mandovi followed by a plated dinner and live music on board.",
+    image: "https://images.unsplash.com/photo-1596838132731-3301c3fd4317?q=80&w=1400&auto=format&fit=crop",
+  },
+  {
+    name: "Adventure Trip: Dudhsagar Waterfall",
+    duration: "Full day, 8-9 hrs",
+    desc: "A jeep trek to Goa's tallest waterfall through Bhagwan Mahaveer Wildlife Sanctuary, with a stop for a swim at the base.",
     image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1400&auto=format&fit=crop",
   },
   {
     name: "Customised Tour",
     duration: "Flexible",
-    price: "On request",
     desc: "Tell us what you want to see and skip, we'll build the day around it.",
     image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=1400&auto=format&fit=crop",
   },
@@ -78,8 +78,7 @@ export default function SightseeingPage() {
               <h3 className="font-display text-lg text-navy-900">{t.name}</h3>
               <p className="mt-1 flex items-center gap-1 text-xs text-navy-900/50"><FiClock size={12} /> {t.duration}</p>
               <p className="mt-2 text-sm text-navy-900/65">{t.desc}</p>
-              <div className="mt-4 flex items-center justify-between">
-                <span className="font-semibold text-emerald-600">{t.price}</span>
+              <div className="mt-4 flex items-center justify-end">
                 <BookButton label="Book Tour" />
               </div>
             </div>

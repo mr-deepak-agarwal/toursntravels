@@ -5,7 +5,7 @@ import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact Us",
-  description: "Get in touch with AzureGoa for bookings, custom itineraries or general questions. Call, WhatsApp or visit us in Candolim, North Goa.",
+  description: "Get in touch with Goa Best Deals Tours & Travels for bookings, quotes, custom itineraries or general questions. Call, WhatsApp or visit us in Candolim, North Goa.",
   alternates: { canonical: "/contact" },
 };
 
@@ -28,7 +28,7 @@ export default function ContactPage() {
 
       <section className="container-lux grid grid-cols-1 gap-10 pb-24 lg:grid-cols-2">
         <div>
-          <div className="h-72 w-full overflow-hidden rounded-4xl bg-sand-200/70" aria-label="Map of AzureGoa office in Candolim, North Goa" />
+          <div className="h-72 w-full overflow-hidden rounded-4xl bg-sand-200/70" aria-label="Map of our office in Candolim, North Goa" />
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
             {details.map((d) => (
               <div key={d.label} className="flex items-start gap-3 rounded-3xl bg-sand-200/60 p-5">

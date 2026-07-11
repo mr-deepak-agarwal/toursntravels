@@ -18,7 +18,7 @@ export default function Experiences() {
           </h2>
         </div>
         <p className="max-w-sm text-sand-100/60">
-          Eight moods, one destination. Scroll or drag the filmstrip below.
+          Many moods, one destination. Scroll or drag the filmstrip below.
         </p>
       </div>
 
