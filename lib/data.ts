@@ -45,7 +45,7 @@ export const services = [
     desc: "From boutique beach villas to full-service resorts, every stay is vetted for location, comfort and honest reviews.",
     points: ["Beach Resorts & Villas", "Honeymoon Retreats", "Family-friendly Stays"],
     href: "/hotels",
-    image: "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?q=80&w=1600&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?q=80&w=1600&auto=format&fit=crop",
   },
   {
     id: "packages",
@@ -104,9 +104,9 @@ export const experiences = [
   { title: "Beaches", image: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?q=80&w=1200&auto=format&fit=crop" },
   { title: "Nightlife", image: "https://images.unsplash.com/photo-1566737236500-c8ac43014a67?q=80&w=1200&auto=format&fit=crop" },
   { title: "Water Sports", image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1200&auto=format&fit=crop" },
-  { title: "Boat Cruise", image: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?q=80&w=1200&auto=format&fit=crop" },
-  { title: "Dinner Cruise", image: "https://images.unsplash.com/photo-1596838132731-3301c3fd4317?q=80&w=1200&auto=format&fit=crop" },
-  { title: "Dudhsagar Waterfall", image: "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?q=80&w=1200&auto=format&fit=crop" },
+  { title: "Boat Cruise", image: "https://images.unsplash.com/photo-1437243964124-5379b751d09a?q=80&w=1200&auto=format&fit=crop" },
+  { title: "Dinner Cruise", image: "https://images.unsplash.com/photo-1706010382755-6ce076a4e978?q=80&w=1200&auto=format&fit=crop" },
+  { title: "Dudhsagar Waterfall", image: "https://images.unsplash.com/photo-1613844838171-e649c7ed3e0d?q=80&w=1200&auto=format&fit=crop" },
   { title: "Dolphin Trips", image: "https://images.unsplash.com/photo-1607153333879-c174d265f1d2?q=80&w=1200&auto=format&fit=crop" },
   { title: "Scuba Diving", image: "https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?q=80&w=1200&auto=format&fit=crop" },
   { title: "Island Trips", image: "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?q=80&w=1200&auto=format&fit=crop" },
@@ -126,7 +126,7 @@ export const fleet = [
     passengers: 4,
     luggage: 2,
     ac: true,
-    image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1706195794608-9759e06e15c3?q=80&w=1200&auto=format&fit=crop",
   },
   {
     name: "Sedan",
@@ -134,7 +134,7 @@ export const fleet = [
     passengers: 4,
     luggage: 2,
     ac: true,
-    image: "https://images.unsplash.com/photo-1754229291743-86880815413e?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?q=80&w=1200&auto=format&fit=crop",
   },
   {
     name: "MUV",
@@ -142,7 +142,7 @@ export const fleet = [
     passengers: 6,
     luggage: 4,
     ac: true,
-    image: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1623371857133-6d5552bbdc13?q=80&w=1200&auto=format&fit=crop",
   },
   {
     name: "SUV",
@@ -150,7 +150,7 @@ export const fleet = [
     passengers: 7,
     luggage: 4,
     ac: true,
-    image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1547559418-8d7437f53b5b?q=80&w=1200&auto=format&fit=crop",
   },
   {
     name: "Tempo Traveller",
@@ -158,7 +158,7 @@ export const fleet = [
     passengers: 17,
     luggage: 10,
     ac: true,
-    image: "https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1725458894508-4fb8bed9a21f?q=80&w=1200&auto=format&fit=crop",
   },
   {
     name: "Luxury",
@@ -166,7 +166,7 @@ export const fleet = [
     passengers: 5,
     luggage: 3,
     ac: true,
-    image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1514316454349-750a7fd3da3a?q=80&w=1200&auto=format&fit=crop",
   },
 ];
 
@@ -184,7 +184,7 @@ export const packages = [
     name: "Kashmir Paradise Tour",
     region: "Jammu & Kashmir",
     nights: 6,
-    image: "https://images.unsplash.com/photo-1566837497312-7be4ebb33a12?q=80&w=1400&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?q=80&w=1400&auto=format&fit=crop",
     highlights: ["Dal Lake Houseboat", "Gulmarg Gondola", "Mughal Gardens"],
   },
   {
@@ -203,7 +203,7 @@ export const pilgrimages = [
     name: "Ajmer Sharif Dargah Yatra",
     region: "Rajasthan",
     nights: 2,
-    image: "https://images.unsplash.com/photo-1599661046289-e31897846e41?q=80&w=1400&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1661470468460-5733b5e74ba4?q=80&w=1400&auto=format&fit=crop",
     highlights: ["Khwaja Moinuddin Chishti Dargah Ziyarat", "Pushkar Brahma Temple (optional add-on)", "Comfortable stay & local guidance", "Langar & etiquette assistance"],
   },
 ];
@@ -215,7 +215,7 @@ export const hotels = [
     location: "Candolim, North Goa",
     rating: 4.8,
     amenities: ["Pool", "Beach Access", "Breakfast", "WiFi"],
-    image: "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?q=80&w=1400&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?q=80&w=1400&auto=format&fit=crop",
   },
   {
     slug: "palm-grove-villas",
@@ -223,7 +223,7 @@ export const hotels = [
     location: "Assagao, North Goa",
     rating: 4.9,
     amenities: ["Private Pool", "Garden", "Breakfast", "WiFi"],
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1400&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=1400&auto=format&fit=crop",
   },
   {
     slug: "palolem-sands",
@@ -231,7 +231,7 @@ export const hotels = [
     location: "Palolem, South Goa",
     rating: 4.6,
     amenities: ["Beach Access", "WiFi", "Breakfast"],
-    image: "https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?q=80&w=1400&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1623718649591-311775a30c43?q=80&w=1400&auto=format&fit=crop",
   },
   {
     slug: "the-lagoon-luxe",
@@ -322,7 +322,7 @@ export const blogPosts = [
     slug: "best-hotels-goa-2026",
     title: "Where to Stay in Goa in 2026: Our Vetted Hotel Shortlist",
     excerpt: "From boutique villas to full-service resorts, the properties that consistently earn repeat bookings.",
-    image: "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?q=80&w=1400&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?q=80&w=1400&auto=format&fit=crop",
     date: "2026-02-20",
     readTime: "9 min read",
   },

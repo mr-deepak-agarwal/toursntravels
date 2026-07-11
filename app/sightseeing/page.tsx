@@ -33,19 +33,19 @@ const tours = [
     name: "Boat Cruise",
     duration: "Half day, 2-3 hrs",
     desc: "A relaxed Mandovi river cruise with live music and views of Goa's riverside forts.",
-    image: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?q=80&w=1400&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1437243964124-5379b751d09a?q=80&w=1400&auto=format&fit=crop",
   },
   {
     name: "Dinner Boat Cruise",
     duration: "Evening, 2-3 hrs",
     desc: "Sunset over the Mandovi followed by a plated dinner and live music on board.",
-    image: "https://images.unsplash.com/photo-1596838132731-3301c3fd4317?q=80&w=1400&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1706010382755-6ce076a4e978?q=80&w=1400&auto=format&fit=crop",
   },
   {
     name: "Adventure Trip: Dudhsagar Waterfall",
     duration: "Full day, 8-9 hrs",
     desc: "A jeep trek to Goa's tallest waterfall through Bhagwan Mahaveer Wildlife Sanctuary, with a stop for a swim at the base.",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1400&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1613844838171-e649c7ed3e0d?q=80&w=1400&auto=format&fit=crop",
   },
   {
     name: "Customised Tour",
