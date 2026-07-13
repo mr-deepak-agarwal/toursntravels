@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { FiInstagram, FiFacebook, FiTwitter, FiYoutube } from "react-icons/fi";
 import { nav, siteConfig } from "@/lib/data";
@@ -7,9 +8,7 @@ export default function Footer() {
     <footer className="bg-navy-950 text-sand-100">
       <div className="container-lux grid gap-12 py-16 md:grid-cols-4">
         <div className="md:col-span-1">
-          <span className="font-display text-2xl">
-            Goa Best<span className="text-turquoise-400">Deals</span>
-          </span>
+          <Image src="/logo.svg" alt="Goa Best Deals Tours & Travels" width={140} height={154} className="h-20 w-auto" />
           <p className="mt-4 max-w-xs text-sm text-sand-100/60">{siteConfig.description}</p>
           <div className="mt-6 flex gap-3">
             {[FiInstagram, FiFacebook, FiTwitter, FiYoutube].map((Icon, i) => (

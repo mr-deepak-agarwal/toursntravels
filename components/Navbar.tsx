@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiMenu, FiX, FiMail, FiPhone, FiInstagram, FiFacebook, FiTwitter, FiYoutube } from "react-icons/fi";
@@ -55,10 +56,7 @@ export default function Navbar() {
       >
         <div className="container-lux glass-dark flex items-center justify-between rounded-full px-5 py-2.5 shadow-premium transition-all duration-500">
           <Link href="/" className="flex items-center gap-2">
-            {/* TODO(Balli): swap this wordmark for your logo image once ready, e.g. <Image src="/logo.png" ... /> */}
-            <span className="font-display text-xl font-medium text-sand-100 md:text-2xl">
-              Goa Best<span className="text-turquoise-400">Deals</span>
-            </span>
+            <Image src="/logo.svg" alt="Goa Best Deals Tours & Travels" width={100} height={110} className="h-14 w-auto" priority />
           </Link>
 
           <nav className="hidden items-center gap-5 xl:flex">
