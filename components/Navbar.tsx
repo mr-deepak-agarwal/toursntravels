@@ -54,9 +54,16 @@ export default function Navbar() {
       <div
         className={`transition-all duration-500 ${scrolled ? "py-3" : "py-2 md:py-3"}`}
       >
-        <div className="container-lux glass-dark flex items-center justify-between rounded-full px-5 py-2.5 shadow-premium transition-all duration-500">
-          <Link href="/" className="flex items-center gap-2">
-            <Image src="/logo.svg" alt="Goa Best Deals Tours & Travels" width={100} height={110} className="h-14 w-auto" priority />
+        <div className="container-lux glass-dark flex items-center justify-between rounded-full px-5 py-2 shadow-premium transition-all duration-500">
+          <Link href="/" className="flex shrink-0 items-center">
+            <Image
+              src="/logo-horizontal.svg"
+              alt="Goa Best Deals Tours & Travels"
+              width={360}
+              height={96}
+              className="h-14 w-auto md:h-16"
+              priority
+            />
           </Link>
 
           <nav className="hidden items-center gap-5 xl:flex">
