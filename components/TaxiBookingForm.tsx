@@ -2,12 +2,46 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { createClient } from "@/lib/supabase/client";
 
 const vehicleTypes = ["Hatchback", "Sedan", "MUV", "SUV", "Tempo Traveller", "Luxury"];
 
 export default function TaxiBookingForm() {
   const [tripType, setTripType] = useState<"oneway" | "round" | "airport">("airport");
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const supabase = createClient();
+    const { error: insertError } = await supabase.from("enquiries").insert({
+      source: "taxi_booking",
+      trip_type: tripType,
+      pickup_location: formData.get("pickup_location") as string,
+      drop_location: formData.get("drop_location") as string,
+      pickup_date: (formData.get("pickup_date") as string) || null,
+      pickup_time: formData.get("pickup_time") as string,
+      passengers: Number(formData.get("passengers")) || null,
+      vehicle_type: formData.get("vehicle_type") as string,
+      phone: formData.get("phone") as string,
+    });
+
+    setLoading(false);
+
+    if (insertError) {
+      setError("Something went wrong. Please try again or WhatsApp us.");
+      return;
+    }
+
+    setSubmitted(true);
+  }
 
   return (
     <motion.div
@@ -23,6 +57,7 @@ export default function TaxiBookingForm() {
         ].map((t) => (
           <button
             key={t.key}
+            type="button"
             onClick={() => setTripType(t.key as typeof tripType)}
             className={`flex-1 rounded-full py-2 text-xs font-semibold transition ${
               tripType === t.key ? "bg-navy-900 text-sand-100" : "text-navy-900/60"
@@ -39,30 +74,26 @@ export default function TaxiBookingForm() {
           <p className="mt-2 text-sm text-navy-900/60">We&apos;ll confirm your cab within 15 minutes.</p>
         </div>
       ) : (
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            setSubmitted(true);
-          }}
-          className="grid grid-cols-1 gap-4 sm:grid-cols-2"
-        >
-          <input required placeholder="Pickup location" className="input-lux sm:col-span-2" />
-          <input required placeholder="Drop location" className="input-lux sm:col-span-2" />
-          <input required type="date" className="input-lux" />
-          <input required type="time" className="input-lux" />
-          <input required type="number" min={1} placeholder="Passengers" className="input-lux" />
-          <select required defaultValue="" className="input-lux">
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <input name="pickup_location" required placeholder="Pickup location" className="input-lux sm:col-span-2" />
+          <input name="drop_location" required placeholder="Drop location" className="input-lux sm:col-span-2" />
+          <input name="pickup_date" required type="date" className="input-lux" />
+          <input name="pickup_time" required type="time" className="input-lux" />
+          <input name="passengers" required type="number" min={1} placeholder="Passengers" className="input-lux" />
+          <select name="vehicle_type" required defaultValue="" className="input-lux">
             <option value="" disabled>Vehicle type</option>
             {vehicleTypes.map((v) => (
               <option key={v} value={v}>{v}</option>
             ))}
           </select>
-          <input required type="tel" placeholder="Phone number" className="input-lux sm:col-span-2" />
+          <input name="phone" required type="tel" placeholder="Phone number" className="input-lux sm:col-span-2" />
+          {error && <p className="text-sm text-red-500 sm:col-span-2">{error}</p>}
           <button
             type="submit"
-            className="sm:col-span-2 mt-1 rounded-full bg-sunset-500 py-3.5 text-sm font-semibold text-white shadow-premium transition hover:bg-sunset-600"
+            disabled={loading}
+            className="sm:col-span-2 mt-1 rounded-full bg-sunset-500 py-3.5 text-sm font-semibold text-white shadow-premium transition hover:bg-sunset-600 disabled:opacity-60"
           >
-            Book Now
+            {loading ? "Sending…" : "Book Now"}
           </button>
         </form>
       )}

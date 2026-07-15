@@ -3,6 +3,7 @@
 import { createContext, useContext, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FiX, FiCheckCircle } from "react-icons/fi";
+import { createClient } from "@/lib/supabase/client";
 
 type EnquiryContextType = {
   open: () => void;
@@ -23,14 +24,43 @@ const services = [
 export default function EnquiryFormProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   function open() {
     setSubmitted(false);
+    setError("");
     setIsOpen(true);
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setError("");
+    setLoading(true);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const supabase = createClient();
+    const { error: insertError } = await supabase.from("enquiries").insert({
+      source: "enquiry",
+      full_name: formData.get("full_name") as string,
+      phone: formData.get("phone") as string,
+      email: formData.get("email") as string,
+      destination: formData.get("destination") as string,
+      travel_date: (formData.get("travel_date") as string) || null,
+      service: formData.get("service") as string,
+      passengers: Number(formData.get("passengers")) || null,
+      message: formData.get("message") as string,
+    });
+
+    setLoading(false);
+
+    if (insertError) {
+      setError("Something went wrong. Please try again or WhatsApp us.");
+      return;
+    }
+
     setSubmitted(true);
   }
 
@@ -91,12 +121,12 @@ export default function EnquiryFormProvider({ children }: { children: React.Reac
                   </p>
 
                   <form onSubmit={handleSubmit} className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    <input required placeholder="Full name" className="input-lux sm:col-span-2" />
-                    <input required type="tel" placeholder="Phone number" className="input-lux" />
-                    <input required type="email" placeholder="Email address" className="input-lux" />
-                    <input placeholder="Destination" className="input-lux" />
-                    <input type="date" placeholder="Travel date" className="input-lux" />
-                    <select required defaultValue="" className="input-lux sm:col-span-2">
+                    <input name="full_name" required placeholder="Full name" className="input-lux sm:col-span-2" />
+                    <input name="phone" required type="tel" placeholder="Phone number" className="input-lux" />
+                    <input name="email" required type="email" placeholder="Email address" className="input-lux" />
+                    <input name="destination" placeholder="Destination" className="input-lux" />
+                    <input name="travel_date" type="date" placeholder="Travel date" className="input-lux" />
+                    <select name="service" required defaultValue="" className="input-lux sm:col-span-2">
                       <option value="" disabled>
                         Service required
                       </option>
@@ -106,14 +136,16 @@ export default function EnquiryFormProvider({ children }: { children: React.Reac
                         </option>
                       ))}
                     </select>
-                    <input type="number" min={1} placeholder="Passengers" className="input-lux sm:col-span-2" />
-                    <textarea placeholder="Anything else we should know?" rows={3} className="input-lux sm:col-span-2" />
+                    <input name="passengers" type="number" min={1} placeholder="Passengers" className="input-lux sm:col-span-2" />
+                    <textarea name="message" placeholder="Anything else we should know?" rows={3} className="input-lux sm:col-span-2" />
+                    {error && <p className="text-sm text-red-500 sm:col-span-2">{error}</p>}
 
                     <button
                       type="submit"
-                      className="sm:col-span-2 mt-1 rounded-full bg-sunset-500 px-6 py-3.5 text-sm font-semibold text-white shadow-premium transition hover:bg-sunset-600"
+                      disabled={loading}
+                      className="sm:col-span-2 mt-1 rounded-full bg-sunset-500 px-6 py-3.5 text-sm font-semibold text-white shadow-premium transition hover:bg-sunset-600 disabled:opacity-60"
                     >
-                      Send enquiry
+                      {loading ? "Sending…" : "Send enquiry"}
                     </button>
                   </form>
                 </>
