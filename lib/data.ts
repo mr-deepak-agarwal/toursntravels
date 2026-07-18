@@ -335,8 +335,8 @@ export const siteConfig = {
   description:
     "Premium taxi services, self-drive cars, curated hotels, sightseeing, holiday packages and pilgrimage tours across Goa and beyond — every trip quoted just for you.",
   url: "https://www.goabestdealstourstravels.com",
-  phone: "+91 98765 43210",
-  whatsapp: "919876543210",
-  email: "hello@goabestdealstourstravels.com",
+  phone: "+91-8408021863",
+  whatsapp: "+91-8408021863",
+  email: "goabestdealstourstravels@gmail.com",
   address: "Shop 4, Beach Road, Candolim, North Goa 403515, India",
 };
