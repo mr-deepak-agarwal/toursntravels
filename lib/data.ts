@@ -338,5 +338,5 @@ export const siteConfig = {
   phone: "+91-8408021863",
   whatsapp: "+91-8408021863",
   email: "goabestdealstourstravels@gmail.com",
-  address: "Shop 4, Beach Road, Candolim, North Goa 403515, India",
+  address: "Goa, India",
 };
