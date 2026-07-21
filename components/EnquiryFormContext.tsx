@@ -3,7 +3,6 @@
 import { createContext, useContext, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FiX, FiCheckCircle } from "react-icons/fi";
-import { createClient } from "@/lib/supabase/client";
 
 type EnquiryContextType = {
   open: () => void;
@@ -41,22 +40,25 @@ export default function EnquiryFormProvider({ children }: { children: React.Reac
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    const supabase = createClient();
-    const { error: insertError } = await supabase.from("enquiries").insert({
-      source: "enquiry",
-      full_name: formData.get("full_name") as string,
-      phone: formData.get("phone") as string,
-      email: formData.get("email") as string,
-      destination: formData.get("destination") as string,
-      travel_date: (formData.get("travel_date") as string) || null,
-      service: formData.get("service") as string,
-      passengers: Number(formData.get("passengers")) || null,
-      message: formData.get("message") as string,
+    const res = await fetch("/api/enquiry", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        source: "enquiry",
+        full_name: formData.get("full_name") as string,
+        phone: formData.get("phone") as string,
+        email: formData.get("email") as string,
+        destination: formData.get("destination") as string,
+        travel_date: (formData.get("travel_date") as string) || null,
+        service: formData.get("service") as string,
+        passengers: Number(formData.get("passengers")) || null,
+        message: formData.get("message") as string,
+      }),
     });
 
     setLoading(false);
 
-    if (insertError) {
+    if (!res.ok) {
       setError("Something went wrong. Please try again or WhatsApp us.");
       return;
     }

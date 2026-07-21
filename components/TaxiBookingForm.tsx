@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { createClient } from "@/lib/supabase/client";
 
 const vehicleTypes = ["Hatchback", "Sedan", "MUV", "SUV", "Tempo Traveller", "Luxury"];
 
@@ -20,22 +19,25 @@ export default function TaxiBookingForm() {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    const supabase = createClient();
-    const { error: insertError } = await supabase.from("enquiries").insert({
-      source: "taxi_booking",
-      trip_type: tripType,
-      pickup_location: formData.get("pickup_location") as string,
-      drop_location: formData.get("drop_location") as string,
-      pickup_date: (formData.get("pickup_date") as string) || null,
-      pickup_time: formData.get("pickup_time") as string,
-      passengers: Number(formData.get("passengers")) || null,
-      vehicle_type: formData.get("vehicle_type") as string,
-      phone: formData.get("phone") as string,
+    const res = await fetch("/api/enquiry", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        source: "taxi_booking",
+        trip_type: tripType,
+        pickup_location: formData.get("pickup_location") as string,
+        drop_location: formData.get("drop_location") as string,
+        pickup_date: (formData.get("pickup_date") as string) || null,
+        pickup_time: formData.get("pickup_time") as string,
+        passengers: Number(formData.get("passengers")) || null,
+        vehicle_type: formData.get("vehicle_type") as string,
+        phone: formData.get("phone") as string,
+      }),
     });
 
     setLoading(false);
 
-    if (insertError) {
+    if (!res.ok) {
       setError("Something went wrong. Please try again or WhatsApp us.");
       return;
     }

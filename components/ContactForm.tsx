@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FiCheckCircle } from "react-icons/fi";
-import { createClient } from "@/lib/supabase/client";
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -18,18 +17,21 @@ export default function ContactForm() {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    const supabase = createClient();
-    const { error: insertError } = await supabase.from("enquiries").insert({
-      source: "contact",
-      full_name: formData.get("full_name") as string,
-      email: formData.get("email") as string,
-      phone: formData.get("phone") as string,
-      message: formData.get("message") as string,
+    const res = await fetch("/api/enquiry", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        source: "contact",
+        full_name: formData.get("full_name") as string,
+        email: formData.get("email") as string,
+        phone: formData.get("phone") as string,
+        message: formData.get("message") as string,
+      }),
     });
 
     setLoading(false);
 
-    if (insertError) {
+    if (!res.ok) {
       setError("Something went wrong. Please try again or WhatsApp us.");
       return;
     }
