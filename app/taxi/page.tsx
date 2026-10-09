@@ -1,7 +1,15 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { fleet } from "@/lib/data";
+import Link from "next/link";
 import TaxiBookingForm from "@/components/TaxiBookingForm";
+import { CallCta, WhatsAppCta } from "@/components/ContactLinks";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
+import FAQList from "@/components/seo/FAQList";
+import JsonLd from "@/components/seo/JsonLd";
+import { taxiRoutes, categoryLabels, routeTitle, type RouteCategory } from "@/lib/taxi-routes";
+import { absoluteUrl, businessRef } from "@/lib/seo";
+import { faqs as siteFaqs } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Goa Taxi Service — Pickup & Drop Anywhere in Goa",
@@ -10,17 +18,39 @@ export const metadata: Metadata = {
   alternates: { canonical: "/taxi" },
 };
 
-const routes = [
-  { from: "Goa Airport (Dabolim/Mopa)", to: "Calangute / Baga" },
-  { from: "Goa Airport", to: "Palolem, South Goa" },
-  { from: "Madgaon Railway", to: "Anjuna" },
-  { from: "North Goa", to: "South Goa (round trip)" },
-  { from: "Anywhere in Goa", to: "Anywhere in Goa" },
+const categoryOrder: RouteCategory[] = ["airport", "railway", "inter-region", "outstation"];
+
+const taxiFaqs = [
+  ...siteFaqs.filter((f) => f.q.toLowerCase().includes("taxi") || f.q.toLowerCase().includes("pricing")),
+  {
+    q: "Which airport should I fly into for Goa: Mopa or Dabolim?",
+    a: "Mopa (Manohar International) in Pernem is closer to North Goa beaches like Arambol, Anjuna, Vagator, Candolim and Calangute. Dabolim is closer to Panjim and South Goa (Colva, Benaulim, Palolem). Pick the airport nearer to where you are staying if fares are similar. We run transfers from both.",
+  },
+  {
+    q: "Do you track my flight or train?",
+    a: "Yes. Share your flight number or train number and PNR when you book, and your pick-up time follows the actual arrival.",
+  },
+  {
+    q: "Can I book a taxi for the whole day or for several days?",
+    a: "Yes. Full-day local use, multi-day trips and outstation journeys are all available. Tell us your dates and route for a quote.",
+  },
 ];
 
 export default function TaxiPage() {
   return (
     <div className="pt-28">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "TaxiService",
+          name: "Goa Taxi Service",
+          serviceType: "Taxi, airport transfer and outstation cab",
+          url: absoluteUrl("/taxi"),
+          provider: businessRef,
+          areaServed: { "@type": "State", name: "Goa" },
+        }}
+      />
+      <Breadcrumbs crumbs={[{ name: "Taxi", href: "/taxi" }]} />
       <section className="container-lux pb-16">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-start">
           <div>
@@ -42,18 +72,40 @@ export default function TaxiPage() {
               />
             </div>
 
-            <div className="mt-8 space-y-3">
-              <h2 className="font-display text-lg text-navy-900">Popular routes</h2>
-              {routes.map((r) => (
-                <div key={r.from + r.to} className="flex items-center justify-between rounded-2xl bg-sand-200/60 px-4 py-3 text-sm">
-                  <span className="text-navy-900/75">{r.from} → {r.to}</span>
-                  <span className="text-xs font-semibold uppercase tracking-wide text-emerald-600">Get Quote</span>
-                </div>
-              ))}
+            <div className="mt-6 flex flex-wrap gap-3">
+              <WhatsAppCta message="Hi! I'd like a taxi quote. Pickup: ____ Drop: ____ Date: ____" placement="taxi_hub" label="Get a quote on WhatsApp" />
+              <CallCta placement="taxi_hub" />
             </div>
           </div>
 
           <TaxiBookingForm />
+        </div>
+      </section>
+
+      <section className="container-lux pb-16">
+        <h2 className="heading-hero text-3xl text-navy-900">Popular Goa taxi routes</h2>
+        <p className="mt-2 max-w-2xl text-sm text-navy-900/65">
+          Pick your route for distance, drive time, local tips and a quick quote.
+        </p>
+        <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
+          {categoryOrder.map((cat) => (
+            <div key={cat}>
+              <h3 className="font-display text-lg text-navy-900">{categoryLabels[cat]}</h3>
+              <ul className="mt-3 space-y-2">
+                {taxiRoutes.filter((r) => r.category === cat).map((r) => (
+                  <li key={r.slug}>
+                    <Link
+                      href={`/taxi/${r.slug}`}
+                      className="flex items-center justify-between rounded-2xl bg-sand-200/60 px-4 py-3 text-sm text-navy-900/80 transition hover:bg-sand-200 hover:text-turquoise-600"
+                    >
+                      <span>{routeTitle(r)}</span>
+                      <span aria-hidden>→</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -74,6 +126,10 @@ export default function TaxiPage() {
             ))}
           </div>
         </div>
+      </section>
+
+      <section className="container-lux max-w-3xl py-16">
+        <FAQList items={taxiFaqs} title="Goa taxi: common questions" />
       </section>
     </div>
   );

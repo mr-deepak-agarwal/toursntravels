@@ -3,6 +3,9 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { packages } from "@/lib/data";
 import BookButton from "@/components/BookButton";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
+import JsonLd from "@/components/seo/JsonLd";
+import { absoluteUrl, businessRef } from "@/lib/seo";
 
 export function generateStaticParams() {
   return packages.map((p) => ({ slug: p.slug }));
@@ -13,9 +16,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const pkg = packages.find((p) => p.slug === slug);
   if (!pkg) return {};
   return {
-    title: `${pkg.name} — ${pkg.nights} Nights Package`,
-    description: `${pkg.name} in ${pkg.region}: ${pkg.highlights.join(", ")}. Contact us for a tailored quote.`,
+    title: `${pkg.name} — ${pkg.nights} Nights ${pkg.region} Package`,
+    description: `${pkg.nights} nights ${pkg.nights + 1} days in ${pkg.region}: ${pkg.highlights.slice(0, 3).join(", ")}. Day-wise itinerary, inclusions and a tailored quote.`,
     alternates: { canonical: `/holiday-packages/${pkg.slug}` },
+    openGraph: { title: pkg.name, images: [pkg.image], url: absoluteUrl(`/holiday-packages/${pkg.slug}`) },
   };
 }
 
@@ -39,27 +43,27 @@ export default async function PackageDetailPage({ params }: { params: Promise<{ 
   const pkg = packages.find((p) => p.slug === slug);
   if (!pkg) return notFound();
 
-  const itinerary = Array.from({ length: pkg.nights }).map((_, i) => ({
-    day: i + 1,
-    title:
-      i === 0
-        ? `Arrival in ${pkg.region}`
-        : i === pkg.nights - 1
-        ? "Departure"
-        : pkg.highlights[i % pkg.highlights.length],
-  }));
+  const itinerary = pkg.itinerary.map((d, i) => ({ day: i + 1, title: d.title, detail: d.detail }));
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "TouristTrip",
     name: pkg.name,
-    description: `${pkg.nights}-night holiday package in ${pkg.region}.`,
+    description: `${pkg.nights}-night holiday package in ${pkg.region}: ${pkg.highlights.join(", ")}.`,
+    url: absoluteUrl(`/holiday-packages/${pkg.slug}`),
+    image: pkg.image,
     touristType: "Leisure",
+    provider: businessRef,
+    itinerary: {
+      "@type": "ItemList",
+      itemListElement: itinerary.map((d) => ({ "@type": "ListItem", position: d.day, name: `Day ${d.day}: ${d.title}`, description: d.detail })),
+    },
   };
 
   return (
     <div className="pt-28">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd data={jsonLd} />
+      <Breadcrumbs crumbs={[{ name: "Holiday Packages", href: "/holiday-packages" }, { name: pkg.name, href: `/holiday-packages/${pkg.slug}` }]} />
 
       <section className="relative h-[50vh] min-h-[360px] w-full">
         <Image src={pkg.image} alt={pkg.name} fill priority className="object-cover" />
@@ -86,7 +90,10 @@ export default async function PackageDetailPage({ params }: { params: Promise<{ 
                 <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-navy-900 text-xs font-semibold text-sand-100">
                   D{d.day}
                 </span>
-                <p className="text-sm text-navy-900/75">{d.title}</p>
+                <div>
+                  <p className="text-sm font-medium text-navy-900">{d.title}</p>
+                  <p className="mt-1 text-sm text-navy-900/65">{d.detail}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -112,7 +119,7 @@ export default async function PackageDetailPage({ params }: { params: Promise<{ 
           <p className="font-display text-2xl">Get a Quote</p>
           <p className="mt-1 text-xs text-sand-100/50">Land package, twin sharing. Price depends on dates, group size and season.</p>
           <div className="mt-6">
-            <BookButton label="Enquire About This Package" />
+            <BookButton label="Enquire About This Package" service="Holiday Package" destination={pkg.name} message={`I'm interested in: ${pkg.name} (${pkg.nights} nights)`} placement={`package_${pkg.slug}`} />
           </div>
           <div className="mt-6 h-40 rounded-2xl bg-navy-800" aria-label={`Map placeholder for ${pkg.region}`} />
         </aside>

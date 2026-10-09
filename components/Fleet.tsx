@@ -39,7 +39,7 @@ export default function Fleet() {
                   <span className="flex items-center gap-1"><FiWind /> AC</span>
                 </div>
                 <button
-                  onClick={open}
+                  onClick={() => open({ service: "Taxi Booking", message: `Vehicle: ${v.name} (${v.example})`, placement: "fleet_card" })}
                   className="mt-5 w-full rounded-full bg-navy-900 py-2.5 text-sm font-semibold text-sand-100 transition hover:bg-navy-800"
                 >
                   Book Now

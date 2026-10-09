@@ -2,11 +2,21 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Honeypot from "./Honeypot";
+import { submitEnquiry } from "@/lib/enquiry-client";
 
 const vehicleTypes = ["Hatchback", "Sedan", "MUV", "SUV", "Tempo Traveller", "Luxury"];
 
-export default function TaxiBookingForm() {
-  const [tripType, setTripType] = useState<"oneway" | "round" | "airport">("airport");
+export default function TaxiBookingForm({
+  defaultPickup = "",
+  defaultDrop = "",
+  defaultTripType = "airport",
+}: {
+  defaultPickup?: string;
+  defaultDrop?: string;
+  defaultTripType?: "oneway" | "round" | "airport";
+} = {}) {
+  const [tripType, setTripType] = useState<"oneway" | "round" | "airport">(defaultTripType);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -19,11 +29,9 @@ export default function TaxiBookingForm() {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    const res = await fetch("/api/enquiry", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        source: "taxi_booking",
+    const ok = await submitEnquiry(
+      "taxi_booking",
+      {
         trip_type: tripType,
         pickup_location: formData.get("pickup_location") as string,
         drop_location: formData.get("drop_location") as string,
@@ -32,12 +40,13 @@ export default function TaxiBookingForm() {
         passengers: Number(formData.get("passengers")) || null,
         vehicle_type: formData.get("vehicle_type") as string,
         phone: formData.get("phone") as string,
-      }),
-    });
+      },
+      (formData.get("website") as string) || ""
+    );
 
     setLoading(false);
 
-    if (!res.ok) {
+    if (!ok) {
       setError("Something went wrong. Please try again or WhatsApp us.");
       return;
     }
@@ -76,9 +85,10 @@ export default function TaxiBookingForm() {
           <p className="mt-2 text-sm text-navy-900/60">We&apos;ll confirm your cab within 15 minutes.</p>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <input name="pickup_location" required placeholder="Pickup location" className="input-lux sm:col-span-2" />
-          <input name="drop_location" required placeholder="Drop location" className="input-lux sm:col-span-2" />
+        <form onSubmit={handleSubmit} className="relative grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <Honeypot />
+          <input name="pickup_location" required defaultValue={defaultPickup} placeholder="Pickup location" className="input-lux sm:col-span-2" />
+          <input name="drop_location" required defaultValue={defaultDrop} placeholder="Drop location" className="input-lux sm:col-span-2" />
           <input name="pickup_date" required type="date" className="input-lux" />
           <input name="pickup_time" required type="time" className="input-lux" />
           <input name="passengers" required type="number" min={1} placeholder="Passengers" className="input-lux" />
@@ -88,7 +98,7 @@ export default function TaxiBookingForm() {
               <option key={v} value={v}>{v}</option>
             ))}
           </select>
-          <input name="phone" required type="tel" placeholder="Phone number" className="input-lux sm:col-span-2" />
+          <input name="phone" required type="tel" inputMode="tel" autoComplete="tel" placeholder="Phone / WhatsApp number" className="input-lux sm:col-span-2" />
           {error && <p className="text-sm text-red-500 sm:col-span-2">{error}</p>}
           <button
             type="submit"

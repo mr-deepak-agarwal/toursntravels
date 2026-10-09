@@ -48,6 +48,21 @@ This was verified to build cleanly (27 static/SSG pages) in this environment.
   transitions); `prefers-reduced-motion` is respected globally in `globals.css`.
 - Lenis is wired up for smooth scroll (`components/SmoothScroll.tsx`).
 
+## SEO & lead tracking
+
+- **Landing pages that match real searches**: `/taxi/[slug]` (17 airport, railway, North-South and
+  outstation routes, data in `lib/taxi-routes.ts`) and `/sightseeing/[slug]` (5 tours, data in
+  `lib/tours.ts`). Add a route or tour by adding an entry to those files; the page, sitemap entry,
+  schema, breadcrumbs and footer link are generated automatically.
+- **Schema**: `TravelAgency`/`LocalBusiness` + `WebSite` (site-wide), `TaxiService`, `TouristTrip`,
+  `BlogPosting`, `BreadcrumbList`, `FAQPage`. Business details come from `siteConfig` in `lib/data.ts`.
+- **Lead tracking (GA4)**: events `generate_lead`, `whatsapp_click`, `call_click`,
+  `open_enquiry_form` (see `lib/analytics.ts`). Mark `generate_lead` (and ideally the other two)
+  as Key Events in GA4. The enquiry inbox also records the landing page, referrer and UTM tags.
+- **Spam protection** on `/api/enquiry`: honeypot field, rate limit, validation, HTML-escaped emails.
+- `/admin` is `noindex` and disallowed in `robots.txt`.
+- See `SEO-CHECKLIST.md` for the things only the client can supply (real address, GBP, reviews, photos).
+
 ## Design system
 
 Tokens live in `tailwind.config.ts` and `lib/data.ts`:

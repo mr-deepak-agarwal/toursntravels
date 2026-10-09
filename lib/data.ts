@@ -178,6 +178,15 @@ export const packages = [
     nights: 6,
     image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=1400&auto=format&fit=crop",
     highlights: ["Solang Valley & Rohtang Pass (seasonal)", "Old Manali Cafés", "Shimla Mall Road & Kufri", "Budget-friendly stays"],
+    itinerary: [
+      { title: "Arrival and transfer to Shimla", detail: "Pick-up from Chandigarh (or your preferred base) and a scenic drive up to Shimla. Evening at leisure." },
+      { title: "Shimla sightseeing and Kufri", detail: "The Ridge, Mall Road and Christ Church, then an excursion to Kufri for the viewpoints and short activities." },
+      { title: "Shimla to Manali via Kullu", detail: "A long, scenic drive along the Beas river valley with photo stops. Check in at Manali." },
+      { title: "Manali local sightseeing", detail: "Hadimba Devi Temple, Vashisht, Old Manali's cafés and the Mall Road." },
+      { title: "Solang Valley day", detail: "Optional adventure activities at Solang Valley. Rohtang Pass is a seasonal excursion and depends on permits, weather and road status." },
+      { title: "Kullu and Manali at leisure", detail: "Optional river-side stop in the Kullu valley, shopping and a free evening." },
+      { title: "Departure", detail: "Drop to Chandigarh (or your preferred point) for onward travel." },
+    ],
   },
   {
     slug: "kashmir-paradise",
@@ -186,6 +195,15 @@ export const packages = [
     nights: 6,
     image: "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?q=80&w=1400&auto=format&fit=crop",
     highlights: ["Dal Lake Houseboat", "Gulmarg Gondola", "Mughal Gardens"],
+    itinerary: [
+      { title: "Arrival in Srinagar and Dal Lake houseboat", detail: "Airport pick-up, check-in to a houseboat and a sunset shikara ride on Dal Lake." },
+      { title: "Srinagar sightseeing", detail: "Mughal Gardens (Nishat Bagh and Shalimar Bagh), the old city and local markets." },
+      { title: "Gulmarg day trip", detail: "Drive to Gulmarg for the Gulmarg Gondola. Gondola phases and operating days depend on weather and season." },
+      { title: "Srinagar to Pahalgam", detail: "A scenic drive to Pahalgam through saffron fields and the Lidder valley. Check in and rest." },
+      { title: "Pahalgam local sightseeing", detail: "Valley viewpoints and riverside stops. Pony or taxi excursions are optional and weather-dependent." },
+      { title: "Return to Srinagar", detail: "Back to Srinagar with time for shopping (shawls, dry fruits, handicrafts)." },
+      { title: "Departure", detail: "Transfer to Srinagar airport for your flight home." },
+    ],
   },
   {
     slug: "goa-signature",
@@ -194,6 +212,13 @@ export const packages = [
     nights: 4,
     image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=1400&auto=format&fit=crop",
     highlights: ["North & South Goa", "Boat Cruise", "Beach Resort Stay"],
+    itinerary: [
+      { title: "Arrival and beach evening", detail: "Airport or railway pick-up, check-in at your beach resort and a relaxed first evening by the sea." },
+      { title: "North Goa sightseeing", detail: "Fort Aguada, Candolim, Calangute and Baga beaches, and Anjuna or Vagator for the cliffside views." },
+      { title: "South Goa sightseeing", detail: "Colva and Benaulim beaches, Palolem or Cavelossim for quieter coastline, and local cafés." },
+      { title: "Mandovi boat cruise and leisure", detail: "A river cruise with music in the evening; the rest of the day is free for the beach or the pool." },
+      { title: "Departure", detail: "Check-out and transfer to the airport or railway station." },
+    ],
   },
 ];
 
@@ -205,6 +230,11 @@ export const pilgrimages = [
     nights: 2,
     image: "https://images.unsplash.com/photo-1661470468460-5733b5e74ba4?q=80&w=1400&auto=format&fit=crop",
     highlights: ["Khwaja Moinuddin Chishti Dargah Ziyarat", "Pushkar Brahma Temple (optional add-on)", "Comfortable stay & local guidance", "Langar & etiquette assistance"],
+    itinerary: [
+      { title: "Arrival in Ajmer", detail: "Pick-up, hotel check-in near the Dargah and an evening ziyarat with guidance on etiquette and offerings." },
+      { title: "Ziyarat and local visits", detail: "Morning ziyarat at the Dargah of Khwaja Moinuddin Chishti, with optional Pushkar and Brahma Temple add-on and time at Ana Sagar lake." },
+      { title: "Departure", detail: "Check-out and drop to the railway station, airport or onward destination." },
+    ],
   },
 ];
 
@@ -297,18 +327,18 @@ export const blogPosts = [
   {
     slug: "best-beaches-in-goa",
     title: "12 Best Beaches in Goa, From Buzzing to Basically Empty",
-    excerpt: "A honest, non-generic tour of Goa's coastline, organised by the kind of day you're actually looking for.",
+    excerpt: "Twelve Goa beaches, grouped by the kind of day you want: lively, cliffside sunsets, family-friendly or nearly empty.",
     image: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?q=80&w=1400&auto=format&fit=crop",
     date: "2026-05-12",
-    readTime: "8 min read",
+    readTime: "5 min read",
   },
   {
     slug: "goa-taxi-guide",
     title: "The Real Goa Taxi Guide: Zones, Routes & What to Expect",
-    excerpt: "Airport counters, prepaid stands, app-based cabs — here's how taxi travel actually works in Goa in 2026.",
+    excerpt: "Airport counters, local taxis, app-based cabs and pre-booking: how taxi travel works in Goa and what to ask before you book.",
     image: "https://images.unsplash.com/photo-1754229291743-86880815413e?q=80&w=1400&auto=format&fit=crop",
     date: "2026-04-28",
-    readTime: "6 min read",
+    readTime: "4 min read",
   },
   {
     slug: "north-vs-south-goa",
@@ -316,19 +346,53 @@ export const blogPosts = [
     excerpt: "Nightlife versus silence, backpackers versus villas — a clear-eyed breakdown before you book.",
     image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=1400&auto=format&fit=crop",
     date: "2026-03-15",
-    readTime: "7 min read",
+    readTime: "4 min read",
   },
   {
     slug: "best-hotels-goa-2026",
-    title: "Where to Stay in Goa in 2026: Our Vetted Hotel Shortlist",
-    excerpt: "From boutique villas to full-service resorts, the properties that consistently earn repeat bookings.",
+    title: "Where to Stay in Goa: The Best Areas for Every Kind of Trip",
+    excerpt: "Candolim, Calangute, Anjuna, Cavelossim or Palolem? How to pick the right area before you pick a hotel.",
     image: "https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?q=80&w=1400&auto=format&fit=crop",
     date: "2026-02-20",
-    readTime: "9 min read",
+    readTime: "4 min read",
+  },
+  {
+    slug: "mopa-vs-dabolim-airport-goa",
+    title: "Mopa vs Dabolim: Which Goa Airport Should You Fly Into?",
+    excerpt: "Goa has two airports. Here is which one is closer to your beach, and how to get from each to your hotel.",
+    image: "https://images.unsplash.com/photo-1754229291743-86880815413e?q=80&w=1400&auto=format&fit=crop",
+    date: "2026-10-09",
+    readTime: "4 min read",
+  },
+  {
+    slug: "dudhsagar-waterfall-trip-guide",
+    title: "Dudhsagar Waterfall from Goa: How to Go, When to Go & What to Carry",
+    excerpt: "A practical guide to the jeep safari, the best months and the rules to check before you set off.",
+    image: "https://images.unsplash.com/photo-1613844838171-e649c7ed3e0d?q=80&w=1400&auto=format&fit=crop",
+    date: "2026-10-09",
+    readTime: "4 min read",
+  },
+  {
+    slug: "self-drive-car-rental-goa-guide",
+    title: "Self Drive Car Rental in Goa: Documents, Costs to Check & Driving Tips",
+    excerpt: "What you need to hire a car in Goa, how to choose one and what to know before you drive.",
+    image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=1400&auto=format&fit=crop",
+    date: "2026-10-09",
+    readTime: "4 min read",
+  },
+  {
+    slug: "best-time-to-visit-goa",
+    title: "Best Time to Visit Goa: Month-by-Month Guide",
+    excerpt: "Peak season, shoulder months or monsoon? What each part of the year in Goa is actually like.",
+    image: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?q=80&w=1400&auto=format&fit=crop",
+    date: "2026-10-09",
+    readTime: "4 min read",
   },
 ];
 
-// TODO(Balli): replace phone / whatsapp / email with your real business details before launch.
+// TODO(Balli): confirm every value below with the client before launch. These feed the
+// footer, contact page, JSON-LD (LocalBusiness) and wa.me / tel: links, and they MUST match the
+// Google Business Profile exactly (name, address, phone) or local rankings suffer.
 export const siteConfig = {
   name: "Goa Best Deals Tours & Travels",
   tagline: "Goa, Unhurried.",
@@ -336,7 +400,20 @@ export const siteConfig = {
     "Premium taxi services, self-drive cars, curated hotels, sightseeing, holiday packages and pilgrimage tours across Goa and beyond — every trip quoted just for you.",
   url: "https://www.goabestdealstourstravels.com",
   phone: "+91-8408021863",
-  whatsapp: "+91-8408021863",
-  email: "goabestdealstourstravels@gmail.com",
-  address: "Goa, India",
+  whatsapp: "+91-8408021863", // any format; seo.ts strips it to digits for wa.me
+  email: "goabestdealstourstravels@gmail.com", // TODO: use an @goabestdealstourstravels.com address once set up
+  address: "Candolim, North Goa, Goa, India", // display address (contact page says Candolim)
+  addressLine: "", // TODO: street / building, e.g. "Shop 3, XYZ Complex, Candolim-Calangute Road"
+  locality: "Candolim",
+  postalCode: "", // TODO: e.g. 403515
+  geo: null as { lat: number; lng: number } | null, // TODO: exact office coordinates from Google Maps
+  mapsUrl: "", // TODO: Google Business Profile / Maps share link
+  mapsEmbedUrl: "", // TODO: Google Maps "Embed a map" iframe src (enables the map on /contact)
+  // Fill in the real profile URLs. Empty ones are hidden in the footer and left out of JSON-LD.
+  social: {
+    instagram: "",
+    facebook: "",
+    youtube: "",
+    twitter: "",
+  } as Record<"instagram" | "facebook" | "youtube" | "twitter", string>,
 };

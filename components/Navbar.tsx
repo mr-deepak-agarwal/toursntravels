@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiMenu, FiX, FiMail, FiPhone, FiInstagram, FiFacebook, FiTwitter, FiYoutube } from "react-icons/fi";
+import { FiMenu, FiX, FiMail, FiPhone } from "react-icons/fi";
 import { nav, siteConfig } from "@/lib/data";
 import { useEnquiry } from "./EnquiryFormContext";
+import { socialLinks } from "@/lib/social";
+import { telHref } from "@/lib/seo";
+import { trackCall } from "@/lib/analytics";
 
-const socialLinks = [FiInstagram, FiFacebook, FiTwitter, FiYoutube];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -37,13 +39,13 @@ export default function Navbar() {
             <a href={`mailto:${siteConfig.email}`} className="flex items-center gap-1.5 hover:text-turquoise-400">
               <FiMail size={13} /> {siteConfig.email}
             </a>
-            <a href={`tel:${siteConfig.phone}`} className="flex items-center gap-1.5 hover:text-turquoise-400">
+            <a href={telHref} onClick={() => trackCall("navbar_top")} className="flex items-center gap-1.5 hover:text-turquoise-400">
               <FiPhone size={13} /> {siteConfig.phone}
             </a>
           </div>
           <div className="flex items-center gap-4">
-            {socialLinks.map((Icon, i) => (
-              <a key={i} href="#" aria-label="Social link" className="hover:text-turquoise-400">
+            {socialLinks.map(({ key, href, label, Icon }) => (
+              <a key={key} href={href} target="_blank" rel="noopener noreferrer me" aria-label={label} className="hover:text-turquoise-400">
                 <Icon size={13} />
               </a>
             ))}
@@ -80,7 +82,7 @@ export default function Navbar() {
 
           <div className="hidden items-center gap-3 xl:flex">
             <button
-              onClick={open}
+              onClick={() => open({ placement: "navbar_plan_my_trip" })}
               className="whitespace-nowrap rounded-full bg-sunset-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-sunset-600"
             >
               Plan My Trip
@@ -133,22 +135,22 @@ export default function Navbar() {
               <button
                 onClick={() => {
                   setMenuOpen(false);
-                  open();
+                  open({ placement: "mobile_menu_plan_my_trip" });
                 }}
                 className="mt-4 rounded-full bg-sunset-500 px-8 py-3 text-sm font-semibold text-white"
               >
                 Plan My Trip
               </button>
               <div className="mt-6 flex flex-col items-center gap-3 text-sm text-sand-100/70">
-                <a href={`tel:${siteConfig.phone}`} className="flex items-center gap-2 hover:text-turquoise-400">
+                <a href={telHref} onClick={() => trackCall("mobile_menu")} className="flex items-center gap-2 hover:text-turquoise-400">
                   <FiPhone size={14} /> {siteConfig.phone}
                 </a>
                 <a href={`mailto:${siteConfig.email}`} className="flex items-center gap-2 hover:text-turquoise-400">
                   <FiMail size={14} /> {siteConfig.email}
                 </a>
                 <div className="mt-2 flex items-center gap-4">
-                  {socialLinks.map((Icon, i) => (
-                    <a key={i} href="#" aria-label="Social link" className="hover:text-turquoise-400">
+                  {socialLinks.map(({ key, href, label, Icon }) => (
+                    <a key={key} href={href} target="_blank" rel="noopener noreferrer me" aria-label={label} className="hover:text-turquoise-400">
                       <Icon size={16} />
                     </a>
                   ))}

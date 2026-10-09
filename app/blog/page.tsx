@@ -2,16 +2,18 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { blogPosts } from "@/lib/data";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Goa Travel Guides & Tips",
-  description: "Practical Goa travel guides covering beaches, taxi fares, hotels and North vs South Goa comparisons.",
+  description: "Practical Goa travel guides: best beaches, airport and taxi tips, where to stay, Dudhsagar, self-drive rules and the best time to visit.",
   alternates: { canonical: "/blog" },
 };
 
 export default function BlogPage() {
   return (
     <div className="pt-28">
+      <Breadcrumbs crumbs={[{ name: "Blog", href: "/blog" }]} />
       <section className="container-lux pb-12 text-center">
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-turquoise-600">Journal</p>
         <h1 className="heading-hero mx-auto mt-3 max-w-2xl text-4xl text-navy-900 md:text-5xl">
@@ -20,7 +22,7 @@ export default function BlogPage() {
       </section>
 
       <section className="container-lux grid grid-cols-1 gap-6 pb-24 md:grid-cols-2">
-        {blogPosts.map((post) => (
+        {[...blogPosts].sort((a, b) => b.date.localeCompare(a.date)).map((post) => (
           <Link key={post.slug} href={`/blog/${post.slug}`} className="group overflow-hidden rounded-4xl bg-white shadow-premium">
             <div className="relative h-56 w-full overflow-hidden">
               <Image src={post.image} alt={post.title} fill className="object-cover transition duration-700 group-hover:scale-110" />

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import SelfDriveSeoContent from "@/components/SelfDriveSeoContent";
 
 export const metadata: Metadata = {
   title: "Self Drive Cars in Goa — Hourly, Daily & Weekly Rentals",
@@ -7,6 +8,13 @@ export const metadata: Metadata = {
   alternates: { canonical: "/self-drive" },
 };
 
+// The page itself is an interactive client component, so the crawlable explainer text, FAQ and
+// schema live here in the (server) layout and render below it.
 export default function SelfDriveLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return (
+    <>
+      {children}
+      <SelfDriveSeoContent />
+    </>
+  );
 }

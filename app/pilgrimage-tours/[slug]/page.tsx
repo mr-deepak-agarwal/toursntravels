@@ -3,6 +3,9 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { pilgrimages } from "@/lib/data";
 import BookButton from "@/components/BookButton";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
+import JsonLd from "@/components/seo/JsonLd";
+import { absoluteUrl, businessRef } from "@/lib/seo";
 
 export function generateStaticParams() {
   return pilgrimages.map((p) => ({ slug: p.slug }));
@@ -14,8 +17,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!pilgrimage) return {};
   return {
     title: `${pilgrimage.name} — ${pilgrimage.nights} Nights Pilgrimage Tour`,
-    description: `${pilgrimage.name} in ${pilgrimage.region}: ${pilgrimage.highlights.join(", ")}. Contact us for a tailored quote.`,
+    description: `${pilgrimage.nights} nights ${pilgrimage.nights + 1} days in ${pilgrimage.region}: ${pilgrimage.highlights.slice(0, 3).join(", ")}. Day-wise plan, inclusions and a tailored quote.`,
     alternates: { canonical: `/pilgrimage-tours/${pilgrimage.slug}` },
+    openGraph: { title: pilgrimage.name, images: [pilgrimage.image], url: absoluteUrl(`/pilgrimage-tours/${pilgrimage.slug}`) },
   };
 }
 
@@ -39,27 +43,27 @@ export default async function PilgrimageDetailPage({ params }: { params: Promise
   const pilgrimage = pilgrimages.find((p) => p.slug === slug);
   if (!pilgrimage) return notFound();
 
-  const itinerary = Array.from({ length: pilgrimage.nights }).map((_, i) => ({
-    day: i + 1,
-    title:
-      i === 0
-        ? `Arrival in ${pilgrimage.region}`
-        : i === pilgrimage.nights - 1
-        ? "Departure"
-        : pilgrimage.highlights[i % pilgrimage.highlights.length],
-  }));
+  const itinerary = pilgrimage.itinerary.map((d, i) => ({ day: i + 1, title: d.title, detail: d.detail }));
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "TouristTrip",
     name: pilgrimage.name,
-    description: `${pilgrimage.nights}-night pilgrimage tour in ${pilgrimage.region}.`,
+    description: `${pilgrimage.nights}-night pilgrimage tour in ${pilgrimage.region}: ${pilgrimage.highlights.join(", ")}.`,
+    url: absoluteUrl(`/pilgrimage-tours/${pilgrimage.slug}`),
+    image: pilgrimage.image,
     touristType: "Religious",
+    provider: businessRef,
+    itinerary: {
+      "@type": "ItemList",
+      itemListElement: itinerary.map((d) => ({ "@type": "ListItem", position: d.day, name: `Day ${d.day}: ${d.title}`, description: d.detail })),
+    },
   };
 
   return (
     <div className="pt-28">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd data={jsonLd} />
+      <Breadcrumbs crumbs={[{ name: "Pilgrimage Tours", href: "/pilgrimage-tours" }, { name: pilgrimage.name, href: `/pilgrimage-tours/${pilgrimage.slug}` }]} />
 
       <section className="relative h-[50vh] min-h-[360px] w-full">
         <Image src={pilgrimage.image} alt={pilgrimage.name} fill priority className="object-cover" />
@@ -86,7 +90,10 @@ export default async function PilgrimageDetailPage({ params }: { params: Promise
                 <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-navy-900 text-xs font-semibold text-sand-100">
                   D{d.day}
                 </span>
-                <p className="text-sm text-navy-900/75">{d.title}</p>
+                <div>
+                  <p className="text-sm font-medium text-navy-900">{d.title}</p>
+                  <p className="mt-1 text-sm text-navy-900/65">{d.detail}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -112,7 +119,7 @@ export default async function PilgrimageDetailPage({ params }: { params: Promise
           <p className="font-display text-2xl">Get a Quote</p>
           <p className="mt-1 text-xs text-sand-100/50">Land package, twin sharing. Price depends on dates, group size and season.</p>
           <div className="mt-6">
-            <BookButton label="Enquire About This Yatra" />
+            <BookButton label="Enquire About This Yatra" service="Holiday Package" destination={pilgrimage.name} message={`I'm interested in: ${pilgrimage.name} (${pilgrimage.nights} nights)`} placement={`pilgrimage_${pilgrimage.slug}`} />
           </div>
           <div className="mt-6 h-40 rounded-2xl bg-navy-800" aria-label={`Map placeholder for ${pilgrimage.region}`} />
         </aside>

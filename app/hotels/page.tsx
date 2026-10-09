@@ -46,7 +46,7 @@ export default function HotelsPage() {
                 ))}
               </div>
               <div className="mt-5 flex items-center justify-end">
-                <BookButton label="Enquire for Best Price" />
+                <BookButton label="Enquire for Best Price" service="Hotel Booking" placement="hotels_card" />
               </div>
             </div>
           </div>

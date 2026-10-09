@@ -3,9 +3,20 @@
 import { createContext, useContext, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FiX, FiCheckCircle } from "react-icons/fi";
+import Honeypot from "./Honeypot";
+import { submitEnquiry } from "@/lib/enquiry-client";
+import { trackOpenEnquiry } from "@/lib/analytics";
+
+export type EnquiryPrefill = {
+  service?: string;
+  destination?: string;
+  message?: string;
+  /** Where the click came from, for analytics (e.g. "package_card"). */
+  placement?: string;
+};
 
 type EnquiryContextType = {
-  open: () => void;
+  open: (prefill?: EnquiryPrefill) => void;
 };
 
 const EnquiryContext = createContext<EnquiryContextType>({ open: () => {} });
@@ -25,10 +36,13 @@ export default function EnquiryFormProvider({ children }: { children: React.Reac
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [prefill, setPrefill] = useState<EnquiryPrefill>({});
 
-  function open() {
+  function open(p?: EnquiryPrefill) {
     setSubmitted(false);
     setError("");
+    setPrefill(p ?? {});
+    trackOpenEnquiry(p?.placement ?? "unknown");
     setIsOpen(true);
   }
 
@@ -40,11 +54,9 @@ export default function EnquiryFormProvider({ children }: { children: React.Reac
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    const res = await fetch("/api/enquiry", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        source: "enquiry",
+    const ok = await submitEnquiry(
+      "enquiry",
+      {
         full_name: formData.get("full_name") as string,
         phone: formData.get("phone") as string,
         email: formData.get("email") as string,
@@ -53,12 +65,13 @@ export default function EnquiryFormProvider({ children }: { children: React.Reac
         service: formData.get("service") as string,
         passengers: Number(formData.get("passengers")) || null,
         message: formData.get("message") as string,
-      }),
-    });
+      },
+      (formData.get("website") as string) || ""
+    );
 
     setLoading(false);
 
-    if (!res.ok) {
+    if (!ok) {
       setError("Something went wrong. Please try again or WhatsApp us.");
       return;
     }
@@ -122,13 +135,14 @@ export default function EnquiryFormProvider({ children }: { children: React.Reac
                     Tell us what you have in mind, we&apos;ll handle the rest.
                   </p>
 
-                  <form onSubmit={handleSubmit} className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <form onSubmit={handleSubmit} className="relative mt-6 grid max-h-[65vh] grid-cols-1 gap-4 overflow-y-auto sm:grid-cols-2">
+                    <Honeypot />
                     <input name="full_name" required placeholder="Full name" className="input-lux sm:col-span-2" />
-                    <input name="phone" required type="tel" placeholder="Phone number" className="input-lux" />
-                    <input name="email" required type="email" placeholder="Email address" className="input-lux" />
-                    <input name="destination" placeholder="Destination" className="input-lux" />
+                    <input name="phone" required type="tel" inputMode="tel" autoComplete="tel" placeholder="Phone / WhatsApp number" className="input-lux" />
+                    <input name="email" type="email" placeholder="Email (optional)" className="input-lux" />
+                    <input name="destination" defaultValue={prefill.destination ?? ""} placeholder="Destination" className="input-lux" />
                     <input name="travel_date" type="date" placeholder="Travel date" className="input-lux" />
-                    <select name="service" required defaultValue="" className="input-lux sm:col-span-2">
+                    <select name="service" required defaultValue={prefill.service ?? ""} className="input-lux sm:col-span-2">
                       <option value="" disabled>
                         Service required
                       </option>
@@ -139,7 +153,7 @@ export default function EnquiryFormProvider({ children }: { children: React.Reac
                       ))}
                     </select>
                     <input name="passengers" type="number" min={1} placeholder="Passengers" className="input-lux sm:col-span-2" />
-                    <textarea name="message" placeholder="Anything else we should know?" rows={3} className="input-lux sm:col-span-2" />
+                    <textarea name="message" defaultValue={prefill.message ?? ""} placeholder="Anything else we should know?" rows={3} className="input-lux sm:col-span-2" />
                     {error && <p className="text-sm text-red-500 sm:col-span-2">{error}</p>}
 
                     <button

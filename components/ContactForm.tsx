@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FiCheckCircle } from "react-icons/fi";
+import Honeypot from "./Honeypot";
+import { submitEnquiry } from "@/lib/enquiry-client";
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -17,21 +19,20 @@ export default function ContactForm() {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    const res = await fetch("/api/enquiry", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        source: "contact",
+    const ok = await submitEnquiry(
+      "contact",
+      {
         full_name: formData.get("full_name") as string,
         email: formData.get("email") as string,
         phone: formData.get("phone") as string,
         message: formData.get("message") as string,
-      }),
-    });
+      },
+      (formData.get("website") as string) || ""
+    );
 
     setLoading(false);
 
-    if (!res.ok) {
+    if (!ok) {
       setError("Something went wrong. Please try again or WhatsApp us.");
       return;
     }
@@ -48,10 +49,11 @@ export default function ContactForm() {
           <p className="mt-2 text-sm text-navy-900/60">We usually reply within a couple of hours.</p>
         </motion.div>
       ) : (
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-4">
+        <form onSubmit={handleSubmit} className="relative grid grid-cols-1 gap-4">
+          <Honeypot />
           <input name="full_name" required placeholder="Full name" className="input-lux" />
-          <input name="email" required type="email" placeholder="Email address" className="input-lux" />
-          <input name="phone" required type="tel" placeholder="Phone number" className="input-lux" />
+          <input name="email" type="email" placeholder="Email address (optional)" className="input-lux" />
+          <input name="phone" required type="tel" inputMode="tel" autoComplete="tel" placeholder="Phone / WhatsApp number" className="input-lux" />
           <textarea name="message" required rows={4} placeholder="How can we help?" className="input-lux" />
           {error && <p className="text-sm text-red-500">{error}</p>}
           <button

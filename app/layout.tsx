@@ -4,6 +4,10 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import StickyContactBar from "@/components/StickyContactBar";
+import AttributionCapture from "@/components/AttributionCapture";
+import JsonLd from "@/components/seo/JsonLd";
+import { localBusinessJsonLd, websiteJsonLd } from "@/lib/seo";
 import SmoothScroll from "@/components/SmoothScroll";
 import EnquiryFormProvider from "@/components/EnquiryFormContext";
 import { siteConfig } from "@/lib/data";
@@ -26,8 +30,8 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — Premium Goa Taxi, Self Drive, Hotels & Holidays`,
-    template: `%s | ${siteConfig.name}`,
+    default: "Goa Taxi, Self Drive Cars & Holiday Packages | Goa Best Deals",
+    template: "%s | Goa Best Deals",
   },
   description: siteConfig.description,
   keywords: [
@@ -43,7 +47,6 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     url: siteConfig.url,
     siteName: siteConfig.name,
-    images: ["/og-image.jpg"],
     locale: "en_IN",
     type: "website",
   },
@@ -51,11 +54,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${siteConfig.name} — Goa, Unhurried`,
     description: siteConfig.description,
-    images: ["/og-image.jpg"],
   },
-  alternates: {
-    canonical: "/",
-  },
+  // NOTE: no site-wide canonical here. Each page sets its own, otherwise pages without one would
+  // all declare the homepage as canonical. Social share images come from app/opengraph-image.tsx.
+  verification: process.env.NEXT_PUBLIC_GSC_VERIFICATION ? { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION } : undefined,
   robots: {
     index: true,
     follow: true,
@@ -63,38 +65,21 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "TravelAgency",
-    name: siteConfig.name,
-    description: siteConfig.description,
-    url: siteConfig.url,
-    telephone: siteConfig.phone,
-    email: siteConfig.email,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: siteConfig.address,
-      addressCountry: "IN",
-    },
-    areaServed: "Goa, India",
-  };
-
   return (
-    <html lang="en">
-      <body className={`${fraunces.variable} ${inter.variable} font-body antialiased`}>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+    <html lang="en-IN">
+      <body className={`${fraunces.variable} ${inter.variable} pb-[68px] font-body antialiased md:pb-0`}>
+        <JsonLd data={[localBusinessJsonLd(), websiteJsonLd()]} />
+        <AttributionCapture />
         <SmoothScroll>
           <EnquiryFormProvider>
             <Navbar />
             <main>{children}</main>
             <Footer />
             <WhatsAppButton />
+            <StickyContactBar />
           </EnquiryFormProvider>
         </SmoothScroll>
-        <GoogleAnalytics gaId="G-NRK3KFLL36" />
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || "G-NRK3KFLL36"} />
       </body>
     </html>
   );

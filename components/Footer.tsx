@@ -1,7 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FiInstagram, FiFacebook, FiTwitter, FiYoutube } from "react-icons/fi";
 import { nav, siteConfig } from "@/lib/data";
+import { socialLinks } from "@/lib/social";
+import { telHref } from "@/lib/seo";
+import { taxiRoutes, routeTitle } from "@/lib/taxi-routes";
+import { tours } from "@/lib/tours";
 
 export default function Footer() {
   return (
@@ -11,11 +14,13 @@ export default function Footer() {
           <Image src="/logo.svg" alt="Goa Best Deals Tours & Travels" width={140} height={154} className="h-20 w-auto" />
           <p className="mt-4 max-w-xs text-sm text-sand-100/60">{siteConfig.description}</p>
           <div className="mt-6 flex gap-3">
-            {[FiInstagram, FiFacebook, FiTwitter, FiYoutube].map((Icon, i) => (
+            {socialLinks.map(({ key, href, label, Icon }) => (
               <a
-                key={i}
-                href="#"
-                aria-label="Social link"
+                key={key}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer me"
+                aria-label={label}
                 className="flex h-9 w-9 items-center justify-center rounded-full border border-sand-100/15 transition hover:border-turquoise-400 hover:text-turquoise-400"
               >
                 <Icon size={16} />
@@ -41,8 +46,8 @@ export default function Footer() {
           <h4 className="font-display text-sm uppercase tracking-wider text-sand-100/50">Reach us</h4>
           <ul className="mt-4 space-y-3 text-sm text-sand-100/75">
             <li>{siteConfig.address}</li>
-            <li>{siteConfig.phone}</li>
-            <li>{siteConfig.email}</li>
+            <li><a href={telHref} className="hover:text-turquoise-400">{siteConfig.phone}</a></li>
+            <li><a href={`mailto:${siteConfig.email}`} className="hover:text-turquoise-400">{siteConfig.email}</a></li>
             <li>9:00 AM – 9:00 PM, all days</li>
           </ul>
         </div>
@@ -61,6 +66,29 @@ export default function Footer() {
             />
             <button className="bg-turquoise-500 px-5 text-sm font-semibold text-navy-950">Join</button>
           </form>
+        </div>
+      </div>
+
+      <div className="container-lux grid gap-10 border-t border-sand-100/10 py-10 md:grid-cols-2">
+        <div>
+          <h4 className="font-display text-sm uppercase tracking-wider text-sand-100/50">Popular Goa taxi routes</h4>
+          <ul className="mt-4 grid grid-cols-1 gap-x-6 gap-y-2 text-sm sm:grid-cols-2">
+            {taxiRoutes.slice(0, 10).map((r) => (
+              <li key={r.slug}>
+                <Link href={`/taxi/${r.slug}`} className="text-sand-100/70 hover:text-turquoise-400">{routeTitle(r)}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h4 className="font-display text-sm uppercase tracking-wider text-sand-100/50">Goa tours &amp; trips</h4>
+          <ul className="mt-4 space-y-2 text-sm">
+            {tours.map((t) => (
+              <li key={t.slug}>
+                <Link href={`/sightseeing/${t.slug}`} className="text-sand-100/70 hover:text-turquoise-400">{t.name}</Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 

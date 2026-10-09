@@ -64,7 +64,7 @@ export default function SelfDrivePage() {
                   <span className="flex items-center gap-1"><FiSettings /> Automatic/Manual</span>
                 </div>
                 <button
-                  onClick={open}
+                  onClick={() => open({ service: "Self Drive Car", message: `Car: ${v.name} (${v.example})`, placement: "self_drive_card" })}
                   className="mt-5 w-full rounded-full bg-navy-900 py-2.5 text-sm font-semibold text-sand-100 transition hover:bg-navy-800"
                 >
                   Reserve This Car
