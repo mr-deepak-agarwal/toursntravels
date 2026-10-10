@@ -12,7 +12,7 @@ import FAQSchema from "@/components/FAQSchema";
 export const metadata: Metadata = {
   title: "Goa Taxi, Self Drive Cars & Holiday Packages",
   description:
-    "Book premium taxi transfers, self drive cars, curated hotels, sightseeing tours, holiday packages and pilgrimage tours across Goa and beyond. Verified drivers, 24x7 support, best-price quotes on request.",
+    "Book taxi transfers, self drive cars, hotel stays, sightseeing tours, holiday packages and pilgrimage tours across Goa and beyond. Clear quotes on request, by phone, WhatsApp or the enquiry form.",
   alternates: { canonical: "/" },
 };
 

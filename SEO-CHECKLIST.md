@@ -13,10 +13,14 @@ Code-side SEO is done. These items need the client or a human decision.
 - [ ] `lib/tours.ts`, `lib/blog-content.ts`, itineraries in `lib/data.ts`: client reads once, corrects facts and adds first-hand details
 - [ ] Optional: set `fromPrice` on the top routes/tours to show "From ₹X" (and Offer schema); leave empty to stay quote-only
 
-## 3. Remove / replace anything that looks invented
-- [ ] Hotel names, ratings and amenities in `hotels` (lib/data.ts) — use real partner hotels or hide `/hotels`
-- [ ] Testimonials in `testimonials` — use real reviews (name + city) or remove. Do NOT add star-rating schema for placeholder reviews
-- [ ] Unsplash stock photos — replace with the client's own fleet, driver and tour photos (and write specific alt text)
+## 3. Placeholders already removed (add real data when you have it)
+- Fake hotels/ratings, testimonials, "10,000+ travellers / 500+ hotels / 100+ vehicles" stats, the invented 2014 founding story and the team members have been removed. `hotels`, `testimonials` and `stats` in `lib/data.ts` are empty; sections reappear when you fill them
+- [ ] Add real Google reviews as `testimonials` once you have them (with permission)
+- [ ] Add real partner hotels to `hotels` if you want property cards on `/hotels`
+- [ ] Add real `stats` (only numbers the client can prove)
+- [ ] Unsplash stock photos are still used for tours, packages and fleet. Replace with the client's own photos and write specific alt text
+- [ ] Confirm the business claims still on the site: hours 9am to 9pm (contact page, schema), doorstep delivery in North Goa, unlimited km on select cars, self-drive deposit and document rules, package inclusions
+- [ ] Terms and Privacy pages are now real, general-purpose drafts. Have a lawyer review them and add the actual cancellation/refund terms
 
 ## 4. Accounts to set up (outside the code)
 - [ ] Google Search Console: verify (set `NEXT_PUBLIC_GSC_VERIFICATION`), submit `/sitemap.xml`

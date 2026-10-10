@@ -14,7 +14,7 @@ import { faqs as siteFaqs } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Goa Taxi Service — Pickup & Drop Anywhere in Goa",
   description:
-    "Book reliable Goa taxis for pickup and drop anywhere in Goa — airport transfers, railway pickups, North & South Goa sightseeing and outstation trips at the best price. Verified drivers, 24x7 support.",
+    "Book reliable Goa taxis for pickup and drop anywhere in Goa — airport transfers, railway pickups, North & South Goa sightseeing and outstation trips. Clear quotes, no haggling.",
   alternates: { canonical: "/taxi" },
 };
 
@@ -27,8 +27,8 @@ const taxiFaqs = [
     a: "Mopa (Manohar International) in Pernem is closer to North Goa beaches like Arambol, Anjuna, Vagator, Candolim and Calangute. Dabolim is closer to Panjim and South Goa (Colva, Benaulim, Palolem). Pick the airport nearer to where you are staying if fares are similar. We run transfers from both.",
   },
   {
-    q: "Do you track my flight or train?",
-    a: "Yes. Share your flight number or train number and PNR when you book, and your pick-up time follows the actual arrival.",
+    q: "Should I share my flight or train details?",
+    a: "Yes, it helps. Share your flight number or train number and PNR when you book so the pick-up can be planned around your actual arrival.",
   },
   {
     q: "Can I book a taxi for the whole day or for several days?",
@@ -60,7 +60,7 @@ export default function TaxiPage() {
             </h1>
             <p className="mt-4 max-w-md text-navy-900/65">
               Airport transfers, railway pickups, hotel transfers and outstation trips across
-              North and South Goa — at the best price. No haggling, no surge pricing. Contact us for a quote.
+              North and South Goa. Clear quotes, no haggling. Contact us for a quote.
             </p>
 
             <div className="mt-8 relative h-64 overflow-hidden rounded-4xl md:h-80">
@@ -116,7 +116,7 @@ export default function TaxiPage() {
             {fleet.slice(0, 3).map((v) => (
               <div key={v.name} className="overflow-hidden rounded-3xl bg-white shadow-premium">
                 <div className="relative h-40 w-full">
-                  <Image src={v.image} alt={v.name} fill className="object-cover" />
+                  <Image src={v.image} alt={v.name} fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="object-cover" />
                 </div>
                 <div className="p-4">
                   <h3 className="font-display text-lg text-navy-900">{v.name}</h3>

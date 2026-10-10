@@ -38,7 +38,7 @@ export default function SightseeingPage() {
           Days out, paced like you mean it
         </h1>
         <p className="mx-auto mt-4 max-w-lg text-navy-900/65">
-          Guided tours through Goa&apos;s forts, churches, beaches and backroads. Private vehicles, English &amp; Hindi-speaking guides.
+          Tours through Goa&apos;s forts, churches, beaches and backroads, in a private vehicle with a driver who knows the route.
         </p>
       </section>
 

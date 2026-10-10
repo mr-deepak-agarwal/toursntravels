@@ -4,7 +4,10 @@ import { motion } from "framer-motion";
 import { FiStar } from "react-icons/fi";
 import { testimonials } from "@/lib/data";
 
+/** Renders nothing until real guest reviews are added to `testimonials` in lib/data.ts. */
 export default function Testimonials() {
+  if (testimonials.length === 0) return null;
+
   return (
     <section className="container-lux py-24">
       <div className="mb-14 max-w-xl">
@@ -22,7 +25,7 @@ export default function Testimonials() {
             transition={{ duration: 0.5, delay: i * 0.08 }}
             className="rounded-3xl bg-navy-900 p-6 text-sand-100"
           >
-            <div className="mb-3 flex gap-1 text-sunset-400">
+            <div className="mb-3 flex gap-1 text-sunset-400" aria-label={`${t.rating} out of 5 stars`}>
               {Array.from({ length: t.rating }).map((_, idx) => (
                 <FiStar key={idx} fill="currentColor" size={14} />
               ))}

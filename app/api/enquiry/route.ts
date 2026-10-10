@@ -160,7 +160,7 @@ export async function POST(request: Request) {
         .join("");
 
       await resend.emails.send({
-        from: process.env.NOTIFY_FROM || "Zorvana Tours <onboarding@resend.dev>",
+        from: process.env.NOTIFY_FROM || `${process.env.NEXT_PUBLIC_SITE_NAME || "Goa Best Deals Tours & Travels"} <onboarding@resend.dev>`,
         to: notifyTo,
         replyTo: typeof row.email === "string" ? row.email : undefined,
         subject: `New Enquiry — ${SOURCE_LABELS[source]}${row.full_name ? ` from ${String(row.full_name).replace(/[\r\n]+/g, " ")}` : ""}`,

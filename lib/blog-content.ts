@@ -75,7 +75,7 @@ export const blogContent: Record<string, PostContent> = {
         heading: "Airport pick-ups",
         paragraphs: [
           "Both Goa airports, Mopa (Manohar International) in the north and Dabolim in the middle of the coast, have taxi counters outside arrivals where you can book a ride to your destination. Fares are usually set by distance or zone, and the counter is the simplest way to avoid negotiating when you land.",
-          "The trade-off is vehicle size and wait time at busy hours. If you are travelling with a family, a lot of luggage or arriving late at night, pre-booking a cab gives you a confirmed vehicle and a driver who is already waiting.",
+          "The trade-off is vehicle size and wait time at busy hours. If you are travelling with a family, a lot of luggage or arriving late at night, pre-booking a cab gives you a confirmed vehicle and a ride that is arranged before you land.",
         ],
       },
       {
@@ -231,7 +231,7 @@ export const blogContent: Record<string, PostContent> = {
       {
         heading: "Getting from the airport to your hotel",
         paragraphs: [
-          "Both airports have taxi counters and pre-booking options. Pre-booking a cab gives you a vehicle sized for your group, a driver tracking your flight and no queue at arrivals. We run transfers from both airports to North and South Goa.",
+          "Both airports have taxi counters and pre-booking options. Pre-booking a cab gives you a vehicle sized for your group and a ride arranged before you land. We run transfers from both airports to North and South Goa.",
         ],
       },
     ],
@@ -296,7 +296,7 @@ export const blogContent: Record<string, PostContent> = {
       {
         heading: "What you need to rent a car",
         paragraphs: [
-          "You will typically need a valid driving licence (held for at least a year), a government photo ID and a local contact number. International visitors can drive with a valid international driving permit alongside their home licence. A refundable security deposit is usually collected at pickup.",
+          "You will typically need a valid driving licence, a government photo ID and a local contact number. International visitors can drive with a valid international driving permit alongside their home licence. Rental companies normally take a refundable security deposit; confirm the amount and return conditions in your quote.",
         ],
       },
       {

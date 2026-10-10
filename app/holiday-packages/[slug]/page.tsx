@@ -28,7 +28,7 @@ const inclusions = [
   "Daily breakfast",
   "Private airport / station transfers",
   "All sightseeing as listed",
-  "24x7 traveller support",
+  "Phone / WhatsApp support during your trip",
 ];
 
 const exclusions = [
@@ -66,7 +66,7 @@ export default async function PackageDetailPage({ params }: { params: Promise<{ 
       <Breadcrumbs crumbs={[{ name: "Holiday Packages", href: "/holiday-packages" }, { name: pkg.name, href: `/holiday-packages/${pkg.slug}` }]} />
 
       <section className="relative h-[50vh] min-h-[360px] w-full">
-        <Image src={pkg.image} alt={pkg.name} fill priority className="object-cover" />
+        <Image src={pkg.image} alt={pkg.name} fill sizes="100vw" priority className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/30 to-navy-950/10" />
         <div className="container-lux absolute bottom-8 left-0 right-0 text-sand-100">
           <p className="text-xs font-medium uppercase tracking-wider text-turquoise-300">{pkg.region} · {pkg.nights} nights</p>
@@ -100,13 +100,13 @@ export default async function PackageDetailPage({ params }: { params: Promise<{ 
 
           <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2">
             <div>
-              <h3 className="font-display text-lg text-navy-900">Inclusions</h3>
+              <h3 className="font-display text-lg text-navy-900">Typical inclusions</h3>
               <ul className="mt-3 space-y-2 text-sm text-navy-900/70">
                 {inclusions.map((i) => <li key={i}>✓ {i}</li>)}
               </ul>
             </div>
             <div>
-              <h3 className="font-display text-lg text-navy-900">Exclusions</h3>
+              <h3 className="font-display text-lg text-navy-900">Typically not included</h3>
               <ul className="mt-3 space-y-2 text-sm text-navy-900/70">
                 {exclusions.map((i) => <li key={i}>— {i}</li>)}
               </ul>

@@ -33,7 +33,7 @@ export default function PackagesPage() {
             className="group overflow-hidden rounded-4xl bg-white shadow-premium"
           >
             <div className="relative h-56 w-full overflow-hidden">
-              <Image src={p.image} alt={p.name} fill className="object-cover transition duration-700 group-hover:scale-110" />
+              <Image src={p.image} alt={p.name} fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="object-cover transition duration-700 group-hover:scale-110" />
               <span className="absolute left-4 top-4 flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-navy-900">
                 <FiMoon size={12} /> {p.nights} nights
               </span>

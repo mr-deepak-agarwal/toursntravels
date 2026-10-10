@@ -54,7 +54,7 @@ export default function SelfDrivePage() {
               className="overflow-hidden rounded-3xl bg-white shadow-premium"
             >
               <div className="relative h-48 w-full">
-                <Image src={v.image} alt={v.name} fill className="object-cover" />
+                <Image src={v.image} alt={v.name} fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="object-cover" />
               </div>
               <div className="p-5">
                 <h3 className="font-display text-xl text-navy-900">{v.name}</h3>

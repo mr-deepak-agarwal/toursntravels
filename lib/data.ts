@@ -15,7 +15,7 @@ export const services = [
     id: "taxi",
     title: "Goa Taxi Services",
     tag: "Anywhere, anytime",
-    desc: "Pickup and drop anywhere in Goa — airport transfers, railway pickups, hotel-to-hotel rides and outstation trips, at the best price we can offer.",
+    desc: "Pickup and drop anywhere in Goa — airport transfers, railway pickups, hotel-to-hotel rides and outstation trips, with a clear quote for every trip.",
     points: ["Pickup & Drop Anywhere in Goa", "Airport & Railway Transfer", "North & South Goa"],
     href: "/taxi",
     image: "https://images.unsplash.com/photo-1754229291743-86880815413e?q=80&w=1600&auto=format&fit=crop",
@@ -24,7 +24,7 @@ export const services = [
     id: "self-drive",
     title: "Self Drive Cars",
     tag: "Your journey, your pace",
-    desc: "Hand-picked hatchbacks, sedans, MUVs and SUVs for hourly, daily or weekly hire, with unlimited kilometres on select plans.",
+    desc: "Hatchbacks, sedans, MUVs and SUVs for hourly, daily or weekly hire, with unlimited kilometres on select plans.",
     points: ["Hourly / Daily / Weekly", "Unlimited KMs available", "Doorstep delivery"],
     href: "/self-drive",
     image: "https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=1600&auto=format&fit=crop",
@@ -41,8 +41,8 @@ export const services = [
   {
     id: "hotels",
     title: "Hotel Bookings",
-    tag: "Stay curated",
-    desc: "From boutique beach villas to full-service resorts, every stay is vetted for location, comfort and honest reviews.",
+    tag: "Stays, sorted",
+    desc: "Tell us your dates, budget and preferred area, and we will help you find and book a beach resort, villa, homestay or family-friendly hotel.",
     points: ["Beach Resorts & Villas", "Honeymoon Retreats", "Family-friendly Stays"],
     href: "/hotels",
     image: "https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?q=80&w=1600&auto=format&fit=crop",
@@ -112,12 +112,10 @@ export const experiences = [
   { title: "Island Trips", image: "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?q=80&w=1200&auto=format&fit=crop" },
 ];
 
-export const stats = [
-  { value: 10000, suffix: "+", label: "Happy Travellers" },
-  { value: 500, suffix: "+", label: "Partner Hotels" },
-  { value: 100, suffix: "+", label: "Vehicles in Fleet" },
-  { value: 24, suffix: "x7", label: "Support On Call" },
-];
+// Add only figures the client can back up (e.g. a real trip count or years in business).
+// Components hide the stats section while this list is empty.
+export type Stat = { value: number; suffix: string; label: string };
+export const stats: Stat[] = [];
 
 export const fleet = [
   {
@@ -238,67 +236,21 @@ export const pilgrimages = [
   },
 ];
 
-export const hotels = [
-  {
-    slug: "azure-cove-resort",
-    name: "Beachside Cove Resort",
-    location: "Candolim, North Goa",
-    rating: 4.8,
-    amenities: ["Pool", "Beach Access", "Breakfast", "WiFi"],
-    image: "https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?q=80&w=1400&auto=format&fit=crop",
-  },
-  {
-    slug: "palm-grove-villas",
-    name: "Palm Grove Private Villas",
-    location: "Assagao, North Goa",
-    rating: 4.9,
-    amenities: ["Private Pool", "Garden", "Breakfast", "WiFi"],
-    image: "https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=1400&auto=format&fit=crop",
-  },
-  {
-    slug: "palolem-sands",
-    name: "Palolem Sands Homestay",
-    location: "Palolem, South Goa",
-    rating: 4.6,
-    amenities: ["Beach Access", "WiFi", "Breakfast"],
-    image: "https://images.unsplash.com/photo-1623718649591-311775a30c43?q=80&w=1400&auto=format&fit=crop",
-  },
-  {
-    slug: "the-lagoon-luxe",
-    name: "The Lagoon Luxe",
-    location: "Sinquerim, North Goa",
-    rating: 4.9,
-    amenities: ["Infinity Pool", "Spa", "Beach Access", "WiFi"],
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1400&auto=format&fit=crop",
-  },
-];
+// Add real partner properties here (with their own photos) to turn the hotel cards on.
+// `rating` is optional: only set it from a genuine source such as the hotel's Google rating.
+export type Hotel = {
+  slug: string;
+  name: string;
+  location: string;
+  rating?: number;
+  amenities: string[];
+  image: string;
+};
+export const hotels: Hotel[] = [];
 
-export const testimonials = [
-  {
-    name: "Ananya R.",
-    origin: "Mumbai",
-    quote: "The airport pickup was waiting before we even cleared baggage. Every ride afterward was just as smooth.",
-    rating: 5,
-  },
-  {
-    name: "Daniel K.",
-    origin: "London",
-    quote: "Booked a self-drive Baleno for a week and explored North Goa at our own pace, no hidden charges at all.",
-    rating: 5,
-  },
-  {
-    name: "Priya & Karan",
-    origin: "Delhi",
-    quote: "Our honeymoon villa in Assagao had the sunset view straight out of the photos. Planning was effortless.",
-    rating: 5,
-  },
-  {
-    name: "Fatima S.",
-    origin: "Dubai",
-    quote: "The North Goa heritage tour guide knew stories you can't find online. Best half-day we spent in Goa.",
-    rating: 5,
-  },
-];
+// Add real guest reviews here (with permission). The home page section stays hidden while empty.
+export type Testimonial = { name: string; origin: string; quote: string; rating: number };
+export const testimonials: Testimonial[] = [];
 
 export const faqs = [
   {
@@ -307,7 +259,7 @@ export const faqs = [
   },
   {
     q: "Do self-drive cars require a security deposit?",
-    a: "Yes, a refundable security deposit is collected at pickup and returned in full after the vehicle is inspected, provided there is no damage or unpaid toll/fine.",
+    a: "A refundable security deposit is normally collected at pickup. The amount and the return conditions (vehicle inspection, any pending tolls or fines) are confirmed in your quote before you book.",
   },
   {
     q: "Can holiday packages be customised?",
@@ -315,11 +267,11 @@ export const faqs = [
   },
   {
     q: "What documents do I need for self-drive hire?",
-    a: "A valid driving licence (held for at least one year), a government photo ID, and a local contact number. International visitors can drive with a valid international driving permit.",
+    a: "A valid driving licence, a government photo ID and a local contact number. International visitors need a valid international driving permit along with their home licence. Ask us for the exact requirements for your car when you enquire.",
   },
   {
     q: "Why isn't pricing shown on the website?",
-    a: "Fares and package rates depend on dates, group size and season, so we quote every trip individually to make sure you get the best price. Call, WhatsApp or fill the contact form and we'll get back to you with a quote, usually within a few hours.",
+    a: "Fares and package rates depend on dates, group size and season, so we quote every trip individually. Call, WhatsApp or fill the contact form and we'll send you a clear quote.",
   },
 ];
 
@@ -397,7 +349,7 @@ export const siteConfig = {
   name: "Goa Best Deals Tours & Travels",
   tagline: "Goa, Unhurried.",
   description:
-    "Premium taxi services, self-drive cars, curated hotels, sightseeing, holiday packages and pilgrimage tours across Goa and beyond — every trip quoted just for you.",
+    "Taxi services, self-drive cars, hotel bookings, sightseeing, holiday packages and pilgrimage tours across Goa and beyond — every trip quoted just for you.",
   url: "https://www.goabestdealstourstravels.com",
   phone: "+91-8408021863",
   whatsapp: "+91-8408021863", // any format; seo.ts strips it to digits for wa.me

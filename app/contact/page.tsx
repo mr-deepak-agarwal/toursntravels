@@ -41,9 +41,14 @@ export default function ContactPage() {
             />
           ) : (
             // TODO: set siteConfig.mapsEmbedUrl (Google Maps → Share → Embed a map → copy the iframe src).
-            <div className="flex h-72 w-full items-center justify-center rounded-4xl bg-sand-200/70 text-sm text-navy-900/50" aria-label="Map of our office in Candolim, North Goa">
-              Map coming soon
-            </div>
+            <a
+              href={siteConfig.mapsUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(siteConfig.name + ", " + siteConfig.address)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-40 w-full items-center justify-center gap-2 rounded-4xl bg-sand-200/70 text-sm font-semibold text-navy-900 transition hover:bg-sand-200"
+            >
+              <FiMapPin size={18} className="text-emerald-600" /> Open in Google Maps
+            </a>
           )}
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
             {details.map((d) => (

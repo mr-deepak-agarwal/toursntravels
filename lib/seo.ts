@@ -59,7 +59,6 @@ export function localBusinessJsonLd() {
     email: siteConfig.email,
     image: absoluteUrl("/opengraph-image"),
     logo: absoluteUrl("/logo.svg"),
-    priceRange: "$$",
     address: {
       "@type": "PostalAddress",
       streetAddress: siteConfig.addressLine || undefined,

@@ -82,7 +82,7 @@ export default function TaxiBookingForm({
       {submitted ? (
         <div className="py-10 text-center">
           <p className="font-display text-xl text-navy-900">Booking request sent</p>
-          <p className="mt-2 text-sm text-navy-900/60">We&apos;ll confirm your cab within 15 minutes.</p>
+          <p className="mt-2 text-sm text-navy-900/60">We&apos;ll get back to you with a quote shortly.</p>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="relative grid grid-cols-1 gap-4 sm:grid-cols-2">

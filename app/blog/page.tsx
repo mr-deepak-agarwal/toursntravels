@@ -25,7 +25,7 @@ export default function BlogPage() {
         {[...blogPosts].sort((a, b) => b.date.localeCompare(a.date)).map((post) => (
           <Link key={post.slug} href={`/blog/${post.slug}`} className="group overflow-hidden rounded-4xl bg-white shadow-premium">
             <div className="relative h-56 w-full overflow-hidden">
-              <Image src={post.image} alt={post.title} fill className="object-cover transition duration-700 group-hover:scale-110" />
+              <Image src={post.image} alt={post.title} fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="object-cover transition duration-700 group-hover:scale-110" />
             </div>
             <div className="p-6">
               <p className="text-xs text-navy-900/50">{new Date(post.date).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })} · {post.readTime}</p>

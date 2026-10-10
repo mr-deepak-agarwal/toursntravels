@@ -36,7 +36,7 @@ export default function Experiences() {
             whileHover={{ y: -8 }}
             className="group relative h-80 w-64 flex-shrink-0 overflow-hidden rounded-3xl md:h-96 md:w-72"
           >
-            <Image src={exp.image} alt={exp.title} fill className="object-cover transition duration-700 group-hover:scale-110" />
+            <Image src={exp.image} alt={exp.title} fill sizes="288px" className="object-cover transition duration-700 group-hover:scale-110" />
             <div className="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-navy-950/10 to-transparent" />
             <div className="absolute bottom-6 left-6">
               <h3 className="font-display text-2xl text-sand-100">{exp.title}</h3>

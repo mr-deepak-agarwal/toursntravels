@@ -53,8 +53,8 @@ export default function Hero() {
           transition={{ delay: 0.55, duration: 0.7 }}
           className="mt-6 max-w-lg text-lg text-sand-100/80"
         >
-          Premium taxi services, self drive cars, hand-picked hotels and holiday
-          packages, built for travellers who want the coast on their own terms.
+          Taxi services, self drive cars, hotel bookings and holiday packages,
+          built for travellers who want the coast on their own terms.
         </motion.p>
       </motion.div>
 

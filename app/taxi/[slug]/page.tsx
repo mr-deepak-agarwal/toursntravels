@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const r = getRoute(slug);
   if (!r) return {};
   const title = routeTitle(r);
-  const description = `Book a private cab from ${r.from.replace(/ \(.*\)$/, "")} to ${r.to}: ${r.distanceKm}, ${r.duration}. Flight-tracked pick-up, AC cars. Get a quote.`;
+  const description = `Book a private cab from ${r.from.replace(/ \(.*\)$/, "")} to ${r.to}: ${r.distanceKm}, ${r.duration}. Pre-booked pick-up. Get a quote.`;
   return {
     title,
     description,
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 const steps = [
   { t: "Send your details", d: "Pickup, drop, date, passengers and flight or train number. Use the form, WhatsApp or call." },
   { t: "Get a confirmed quote", d: "We reply with the vehicle and fare, including what is and is not included." },
-  { t: "Meet your driver", d: "The driver is at the pick-up point with your name, tracking your flight or train." },
+  { t: "Meet your driver", d: "The driver meets you at the agreed pick-up point at the agreed time." },
 ];
 
 export default async function TaxiRoutePage({ params }: { params: Promise<{ slug: string }> }) {

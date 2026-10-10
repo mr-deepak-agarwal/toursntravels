@@ -3,6 +3,7 @@ import Link from "next/link";
 import { nav, siteConfig } from "@/lib/data";
 import { socialLinks } from "@/lib/social";
 import { telHref } from "@/lib/seo";
+import { WhatsAppCta } from "@/components/ContactLinks";
 import { taxiRoutes, routeTitle } from "@/lib/taxi-routes";
 import { tours } from "@/lib/tours";
 
@@ -53,19 +54,13 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="font-display text-sm uppercase tracking-wider text-sand-100/50">Stay inspired</h4>
+          <h4 className="font-display text-sm uppercase tracking-wider text-sand-100/50">Plan your trip</h4>
           <p className="mt-4 text-sm text-sand-100/75">
-            One email a month. Real Goa tips, no spam.
+            Tell us your dates and group size and we&apos;ll send a clear quote.
           </p>
-          <form className="mt-4 flex overflow-hidden rounded-full border border-sand-100/15">
-            <input
-              type="email"
-              required
-              placeholder="you@email.com"
-              className="w-full bg-transparent px-4 py-2.5 text-sm text-sand-100 outline-none placeholder:text-sand-100/40"
-            />
-            <button className="bg-turquoise-500 px-5 text-sm font-semibold text-navy-950">Join</button>
-          </form>
+          <div className="mt-4">
+            <WhatsAppCta message="Hi! I'd like a quote for a trip in Goa." placement="footer" label="Get a quote on WhatsApp" />
+          </div>
         </div>
       </div>
 

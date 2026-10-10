@@ -43,15 +43,15 @@ export const taxiRoutes: TaxiRoute[] = [
     distanceKm: "about 35–40 km",
     duration: "about 1 hr to 1 hr 15 min",
     intro:
-      "Mopa airport sits in Pernem, at the northern end of Goa, so the drive to Calangute and Baga is a straight run south through the North Goa belt. This is the transfer most first-time visitors book because Calangute–Baga is where the beach shacks, markets and nightlife are concentrated. A pre-booked cab means your driver is waiting at arrivals with your name, rather than you queuing for a ride after a long flight.",
+      "Mopa airport sits in Pernem, at the northern end of Goa, so the drive to Calangute and Baga is a straight run south through the North Goa belt. This is the transfer most first-time visitors book because Calangute–Baga is where the beach shacks, markets and nightlife are concentrated. A pre-booked cab means your ride is arranged before you land, rather than queuing for one after a long flight.",
     tips: [
       "Evening and weekend traffic on the Calangute–Baga stretch is heavy in peak season, so allow extra time if you have a tight check-in or dinner booking.",
-      "Share your flight number when you book; if the flight is delayed, the pick-up time is adjusted without any action from you.",
+      "Share your flight number when you book so the pick-up can be planned around your actual arrival time.",
       "Mopa is far from South Goa. If your hotel is south of Panjim, ask for the Mopa to South Goa fare instead.",
     ],
     faqs: [
       { q: "Which airport should I pick for Calangute and Baga?", a: "Mopa is the closer airport for Calangute and Baga from the north, but the airport you fly into depends on your airline and fare. Both airports are workable; the drive from Dabolim is a bit longer." },
-      { q: "Can the driver wait if my flight is late?", a: "Yes. Send us your flight number and we track the arrival, so the driver reaches the terminal when you land, not when the flight was scheduled." },
+      { q: "Can the driver wait if my flight is late?", a: "Share your flight number when you book so the pick-up can be planned around your actual arrival. Waiting-time terms are confirmed in your quote." },
     ],
     related: ["mopa-airport-to-candolim-taxi", "mopa-airport-to-anjuna-vagator-taxi", "dabolim-airport-to-calangute-baga-taxi"],
   },
@@ -235,7 +235,7 @@ export const taxiRoutes: TaxiRoute[] = [
     ],
     faqs: [
       { q: "Is Madgaon the best station for Calangute?", a: "Madgaon is the main station, but Thivim is closer to North Goa. If train timings are similar, Thivim can save travel time." },
-      { q: "What if my train is delayed by hours?", a: "Share your train number. We follow the running status and adjust pick-up, so you are not charged for waiting that comes from a delayed train." },
+      { q: "What if my train is delayed by hours?", a: "Share your train number and PNR so the pick-up can be planned around the actual arrival. Waiting-time terms are confirmed in your quote." },
     ],
     related: ["thivim-railway-station-to-calangute-taxi", "madgaon-railway-station-to-palolem-taxi", "dabolim-airport-to-calangute-baga-taxi"],
   },
@@ -317,7 +317,7 @@ export const taxiRoutes: TaxiRoute[] = [
     ],
     faqs: [
       { q: "Is the taxi fare to Gokarna one-way or return?", a: "We can do either. A one-way drop is fine; if you want the cab to wait or return the same day, we quote that separately." },
-      { q: "Does the quote include interstate taxes and tolls?", a: "We list tolls and permits separately in the quote so there are no surprises. Confirm when you enquire." },
+      { q: "Does the quote include interstate taxes and tolls?", a: "Tolls, permits and parking are confirmed in the quote. Ask when you enquire." },
     ],
     related: ["goa-to-hampi-taxi", "mopa-airport-to-palolem-taxi", "north-goa-to-south-goa-taxi"],
   },
@@ -337,7 +337,7 @@ export const taxiRoutes: TaxiRoute[] = [
     ],
     faqs: [
       { q: "Can I do Hampi as a day trip from Goa?", a: "It is possible but not recommended, because the drive alone is long. An overnight or two-night stay makes the trip far more enjoyable." },
-      { q: "Do you provide a driver for multiple days?", a: "Yes. We can arrange a driver and vehicle for the whole trip, with the driver's stay and food included in the quote as per our terms." },
+      { q: "Do you provide a driver for multiple days?", a: "Yes, multi-day trips can be arranged. Driver accommodation and food arrangements are confirmed in the quote." },
     ],
     related: ["goa-to-gokarna-taxi", "goa-to-pune-taxi", "goa-to-mumbai-taxi"],
   },
@@ -376,7 +376,7 @@ export const taxiRoutes: TaxiRoute[] = [
       "Ask for a larger vehicle if you have more than three adults or a lot of luggage.",
     ],
     faqs: [
-      { q: "Is the Goa to Mumbai cab fare per km or fixed?", a: "We quote a fixed price after you share dates, pick-up and drop points, and vehicle type. Tolls and permits are listed separately." },
+      { q: "Is the Goa to Mumbai cab fare per km or fixed?", a: "We quote a fixed price after you share dates, pick-up and drop points, and vehicle type. Tolls and permits are confirmed in the quote." },
       { q: "Can the driver stop for meals?", a: "Yes. Regular rest and meal stops are normal on a trip this long." },
     ],
     related: ["goa-to-pune-taxi", "goa-to-gokarna-taxi", "goa-to-hampi-taxi"],
